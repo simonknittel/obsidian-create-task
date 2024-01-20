@@ -1,6 +1,6 @@
 {
   "name": "obsidian-create-task",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Faster creation of tasks in Obsidian.",
   "main": "main.js",
   "scripts": {
