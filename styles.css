@@ -6,3 +6,40 @@ available in the app when your plugin is enabled.
 If your plugin does not need CSS, delete this file.
 
 */
+
+h2.create-task__settings__heading {
+  margin-bottom: 0;
+  font-weight: var(--font-normal);
+}
+
+.create-task__settings__table {
+  width: 100%;
+}
+
+.create-task__settings__table th {
+  text-align: left;
+}
+
+.create-task__settings__table tr {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 100px;
+  gap: var(--size-4-2);
+  padding-top: var(--size-4-2);
+}
+
+.create-task__settings__table td:last-child {
+  display: flex;
+  gap: var(--size-4-2);
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.create-task__settings__table input {
+  width: 100%;
+}
+
+.create-task__settings__info {
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+  line-height: var(--line-height-tight);
+}

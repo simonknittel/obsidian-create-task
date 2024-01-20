@@ -1,6 +1,6 @@
 {
   "name": "obsidian-create-task",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Plugin to ease the creation of tasks in Obsidian",
   "main": "main.js",
   "scripts": {
@@ -22,5 +22,8 @@
     "prettier-plugin-organize-imports": "3.2.4",
     "tslib": "2.4.0",
     "typescript": "4.7.4"
+  },
+  "dependencies": {
+    "chrono-node": "2.7.4"
   }
 }
