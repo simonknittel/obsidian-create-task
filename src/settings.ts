@@ -49,79 +49,6 @@ export class CreateTaskSettingTab extends PluginSettingTab {
       });
 
     containerEl.createEl("h2", {
-      text: "Custom notes",
-      cls: "create-task__settings__heading",
-    });
-
-    const notesTable = containerEl.createEl("table", {
-      cls: "create-task__settings__table",
-    });
-
-    const notesThead = notesTable.createEl("thead");
-    const notesTheadTr = notesThead.createEl("tr");
-    notesTheadTr.createEl("th", { text: "Path" });
-    notesTheadTr.createEl("th", { text: "Name" });
-    notesTheadTr.createEl("th", { text: "Tag (optional)" });
-    notesTheadTr.createEl("th");
-    const notesTbody = notesTable.createEl("tbody");
-
-    for (const [
-      index,
-      customNote,
-    ] of this.plugin.settings.customNotes.entries()) {
-      const noteTr = notesTbody.createEl("tr");
-
-      let tagValue = customNote.tag;
-      let nameValue = customNote.name;
-      let pathValue = customNote.path;
-
-      const pathTd = noteTr.createEl("td");
-      const pathTextComponent = new TextComponent(pathTd);
-      pathTextComponent.setValue(customNote.path).onChange(async (value) => {
-        pathValue = value.trim();
-      });
-
-      const nameTd = noteTr.createEl("td");
-      const nameTextComponent = new TextComponent(nameTd);
-      nameTextComponent.setValue(customNote.name).onChange(async (value) => {
-        nameValue = value.trim();
-      });
-
-      const tagTd = noteTr.createEl("td");
-      const tagTextComponent = new TextComponent(tagTd);
-      tagTextComponent.setValue(customNote.tag).onChange(async (value) => {
-        tagValue = value.trim();
-      });
-
-      const actionsTd = noteTr.createEl("td");
-      const deleteExtraButtonComponent = new ExtraButtonComponent(actionsTd);
-      deleteExtraButtonComponent.setIcon("trash").onClick(async () => {
-        this.plugin.settings.customNotes.splice(index, 1);
-        await this.plugin.saveSettings();
-        this.display();
-      });
-      const saveButtonComponent = new ButtonComponent(actionsTd);
-      saveButtonComponent
-        .setIcon("save")
-        .setCta()
-        .onClick(async () => {
-          if (!nameValue || !pathValue) {
-            new Notice("Create Task: Path and Name are required");
-            return;
-          }
-
-          this.plugin.settings.customNotes[index] = {
-            name: nameValue,
-            path: pathValue,
-            tag: tagValue,
-          };
-
-          await this.plugin.saveSettings();
-          this.display();
-        });
-    }
-
-    containerEl.createEl("h2", {
       text: "Add custom note",
       cls: "create-task__settings__heading",
     });
@@ -176,7 +103,28 @@ export class CreateTaskSettingTab extends PluginSettingTab {
         });
 
         await this.plugin.saveSettings();
-        this.display();
+
+        /**
+         * Re-render custom notes table
+         */
+        notesTable.removeChild(notesTbody);
+        notesTbody = this.renderAllCustomNotes();
+        notesTable.appendChild(notesTbody);
+
+        /**
+         * Reset form
+         */
+        this.newNotePath = "";
+        this.newNoteName = "";
+        this.newNoteTag = "";
+        pathTextComponent.setValue(this.newNotePath);
+        nameTextComponent.setValue(this.newNoteName);
+        tagTextComponent.setValue(this.newNoteTag);
+
+        /**
+         * Refocus path input
+         */
+        pathTextComponent.inputEl.focus();
       });
 
     const addNoteInfoTr = addNoteTbody.createEl("tr", {
@@ -190,5 +138,91 @@ export class CreateTaskSettingTab extends PluginSettingTab {
     });
     addNoteInfoTr.createEl("td", { text: "The file path of this note." });
     addNoteInfoTr.createEl("td");
+
+    containerEl.createEl("h2", {
+      text: "Custom notes",
+      cls: "create-task__settings__heading",
+    });
+
+    const notesTable = containerEl.createEl("table", {
+      cls: "create-task__settings__table",
+    });
+
+    const notesThead = notesTable.createEl("thead");
+    const notesTheadTr = notesThead.createEl("tr");
+    notesTheadTr.createEl("th", { text: "Path" });
+    notesTheadTr.createEl("th", { text: "Name" });
+    notesTheadTr.createEl("th", { text: "Tag (optional)" });
+    notesTheadTr.createEl("th");
+
+    let notesTbody = this.renderAllCustomNotes();
+    notesTable.appendChild(notesTbody);
+  }
+
+  renderAllCustomNotes() {
+    const notesTbody = createEl("tbody");
+
+    for (const customNote of this.plugin.settings.customNotes) {
+      const noteTr = notesTbody.createEl("tr");
+
+      let tagValue = customNote.tag;
+      let nameValue = customNote.name;
+      let pathValue = customNote.path;
+
+      const pathTd = noteTr.createEl("td");
+      const pathTextComponent = new TextComponent(pathTd);
+      pathTextComponent.setValue(customNote.path).onChange(async (value) => {
+        pathValue = value.trim();
+      });
+
+      const nameTd = noteTr.createEl("td");
+      const nameTextComponent = new TextComponent(nameTd);
+      nameTextComponent.setValue(customNote.name).onChange(async (value) => {
+        nameValue = value.trim();
+      });
+
+      const tagTd = noteTr.createEl("td");
+      const tagTextComponent = new TextComponent(tagTd);
+      tagTextComponent.setValue(customNote.tag).onChange(async (value) => {
+        tagValue = value.trim();
+      });
+
+      const actionsTd = noteTr.createEl("td");
+      const deleteExtraButtonComponent = new ExtraButtonComponent(actionsTd);
+      deleteExtraButtonComponent.setIcon("trash").onClick(async () => {
+        const index = this.plugin.settings.customNotes.findIndex(
+          (note) => note === customNote,
+        );
+        this.plugin.settings.customNotes.splice(index, 1);
+
+        await this.plugin.saveSettings();
+
+        notesTbody.removeChild(noteTr);
+      });
+      const saveButtonComponent = new ButtonComponent(actionsTd);
+      saveButtonComponent
+        .setIcon("save")
+        .setCta()
+        .onClick(async () => {
+          if (!nameValue || !pathValue) {
+            new Notice("Create Task: Path and Name are required");
+            return;
+          }
+
+          const index = this.plugin.settings.customNotes.findIndex(
+            (note) => note === customNote,
+          );
+
+          this.plugin.settings.customNotes[index] = {
+            name: nameValue,
+            path: pathValue,
+            tag: tagValue,
+          };
+
+          await this.plugin.saveSettings();
+        });
+    }
+
+    return notesTbody;
   }
 }
