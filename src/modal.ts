@@ -1,46 +1,76 @@
 import { App, Modal, Notice, Setting } from "obsidian";
 import CreateTask from "./main";
 
+type InitialValues =
+  | {
+      notePath: string | undefined;
+      taskDescription: string | undefined;
+      dueDate: string | undefined;
+    }
+  | undefined;
+
 export class CreateTaskModal extends Modal {
   plugin: CreateTask;
 
   customNoteIndex: "default" | number;
+  notePath: string;
   taskDescription: string;
   dueDate: string;
 
   previewElDescription: HTMLElement;
   previewElLine: HTMLElement;
 
-  constructor(app: App, plugin: CreateTask) {
+  initialValues: InitialValues;
+
+  constructor(app: App, plugin: CreateTask, initialValues: InitialValues) {
     super(app);
     this.plugin = plugin;
-    this.customNoteIndex = "default";
+
+    if (initialValues?.notePath) {
+      this.notePath = initialValues.notePath;
+    } else {
+      this.customNoteIndex = "default";
+    }
+
+    this.taskDescription = initialValues?.taskDescription || "";
+    this.dueDate = initialValues?.dueDate || "";
   }
 
   onOpen() {
     const { contentEl } = this;
 
-    contentEl.createEl("h1", { text: "Create Task" });
+    contentEl.createEl("h1", { text: "Create task" });
 
-    new Setting(contentEl)
-      .setName("📁 Target note")
-      .setDesc("Corresponds to the custom notes added in the settings")
-      .addDropdown((dropdown) => {
-        dropdown.addOption("default", "Default");
-        dropdown.setValue("default");
-
-        for (const [
-          index,
-          customNote,
-        ] of this.plugin.settings.customNotes.entries()) {
-          dropdown.addOption(index.toString(), customNote.name);
-        }
-
-        dropdown.onChange((value) => {
-          this.customNoteIndex = value === "default" ? value : parseInt(value);
-          this.updatePreview();
+    if (this.notePath) {
+      new Setting(contentEl)
+        .setName("📁 Target note")
+        .setDesc("Corresponds to the custom notes added in the settings")
+        .addText((text) => {
+          text.setValue(this.notePath);
+          text.setDisabled(true);
         });
-      });
+    } else {
+      new Setting(contentEl)
+        .setName("📁 Target note")
+        .setDesc("Corresponds to the custom notes added in the settings")
+        .addDropdown((dropdown) => {
+          dropdown.addOption("default", "Default");
+          dropdown.setValue("default");
+
+          for (const [
+            index,
+            customNote,
+          ] of this.plugin.settings.customNotes.entries()) {
+            dropdown.addOption(index.toString(), customNote.name);
+          }
+
+          dropdown.onChange((value) => {
+            this.customNoteIndex =
+              value === "default" ? value : parseInt(value);
+            this.updatePreview();
+          });
+        });
+    }
 
     new Setting(contentEl)
       .setName("🖊️ Task description")
@@ -52,6 +82,7 @@ export class CreateTaskModal extends Modal {
         });
 
         text.setPlaceholder("My task");
+        text.setValue(this.taskDescription);
       });
 
     new Setting(contentEl)
@@ -62,6 +93,8 @@ export class CreateTaskModal extends Modal {
           this.dueDate = value;
           this.updatePreview();
         });
+
+        text.setValue(this.dueDate);
       });
 
     new Setting(contentEl).addButton((btn) =>
@@ -96,7 +129,15 @@ export class CreateTaskModal extends Modal {
   }
 
   updatePreview() {
-    if (this.customNoteIndex === "default") {
+    if (this.notePath) {
+      this.previewElDescription.setText(
+        `The following line will get added to: ${this.notePath}`,
+      );
+
+      this.previewElLine.setText(
+        this.plugin.compileLine(undefined, this.taskDescription, this.dueDate),
+      );
+    } else if (this.customNoteIndex === "default") {
       this.previewElDescription.setText(
         `The following line will get added to: ${this.plugin.settings.defaultNote}`,
       );

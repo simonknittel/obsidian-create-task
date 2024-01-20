@@ -16,7 +16,7 @@ export default class CreateTask extends Plugin {
     // This creates an icon in the left ribbon.
     this.addRibbonIcon("check-square", "Create Task", () => {
       // Called when the user clicks the icon.
-      new CreateTaskModal(this.app, this).open();
+      new CreateTaskModal(this.app, this, undefined).open();
     });
 
     // This adds a complex command that can check whether the current state of the app allows execution of the command
@@ -32,15 +32,31 @@ export default class CreateTask extends Plugin {
         // If checking is false, then we want to actually perform the operation.
         if (checking) return true;
 
-        new CreateTaskModal(this.app, this).open();
+        new CreateTaskModal(this.app, this, undefined).open();
       },
     });
 
     // This adds a settings tab so the user can configure various aspects of the plugin
     this.addSettingTab(new CreateTaskSettingTab(this.app, this));
 
-    this.registerObsidianProtocolHandler("create-task", () => {
-      new CreateTaskModal(this.app, this).open();
+    this.registerObsidianProtocolHandler("create-task", (params) => {
+      if (
+        params["create"] === "true" &&
+        params["note-path"] &&
+        this.app.vault.getAbstractFileByPath(params["note-path"])
+      ) {
+        this.createTask(
+          params["note-path"],
+          params["task-description"],
+          params["due-date"],
+        );
+      } else {
+        new CreateTaskModal(this.app, this, {
+          notePath: params["note-path"],
+          taskDescription: params["task-description"],
+          dueDate: params["due-date"],
+        }).open();
+      }
     });
   }
 
@@ -56,7 +72,7 @@ export default class CreateTask extends Plugin {
   }
 
   async createTask(
-    customNoteIndex: "default" | number,
+    customNoteIndex: "default" | string | number,
     taskDescription: string,
     dueDate: string,
   ) {
@@ -65,6 +81,10 @@ export default class CreateTask extends Plugin {
 
     if (customNoteIndex === "default") {
       path = this.settings.defaultNote;
+
+      str = this.compileLine(undefined, taskDescription, dueDate) + "\n";
+    } else if (typeof customNoteIndex === "string") {
+      path = customNoteIndex;
 
       str = this.compileLine(undefined, taskDescription, dueDate) + "\n";
     } else {

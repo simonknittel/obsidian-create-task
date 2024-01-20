@@ -10,7 +10,12 @@ Faster creation of tasks in Obsidian.
 - Create a new task using `Ctrl + P`
 - Create a new task using the ribbon menu
 - Create a new task using the [URL scheme standard](https://help.obsidian.md/Extending+Obsidian/Obsidian+URI)
-  - [obsidian://create-task](obsidian://create-task)
+  - This will open Obsidian and open the Create Task modal: [obsidian://create-task](obsidian://create-task)
+  - You can use parameters to pre-fill the individual modal inputs
+    - This pre-fills the Target note input: `note-path=Unsorted%20TODOs.md`
+    - This pre-fills the Task description input: `task-description=Do%20stuff`
+    - This pre-fills the Due date input: `due-date=tomorrow`
+    - This will skip the modal and immediately create the task in the specified note: `create=true`
 
 ## Screenshots
 
