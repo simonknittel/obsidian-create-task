@@ -1,9 +1,11 @@
 name: Release Obsidian plugin
 
 on:
-  push:
-    tags:
-      - "*"
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Release name"
+        required: true
 
 jobs:
   build:
@@ -26,9 +28,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          tag="${GITHUB_REF#refs/tags/}"
+          zip -r obsidian-create-task.zip main.js manifest.json styles.css
 
-          gh release create "$tag" \
-            --title="$tag" \
+          gh release create ${{ github.event.inputs.name }} \
+            --title="${{ github.event.inputs.name }}" \
             --draft \
-            main.js manifest.json styles.css
+            obsidian-create-task.zip

@@ -10,7 +10,7 @@ Plugin to ease the creation of tasks in Obsidian
 - Create a new task using `Ctrl + P`
 - Create a new task using the ribbon menu
 - Create a new task using the [URL scheme standard](https://help.obsidian.md/Extending+Obsidian/Obsidian+URI)
-  - <a href="obsidian://create-task">obsidian://create-task</a>
+  - [obsidian://create-task](obsidian://create-task)
 
 ## Screenshots
 
@@ -24,9 +24,9 @@ Plugin to ease the creation of tasks in Obsidian
 
 ## How to add this plugin to your Obsidian
 
-1. Download the [latest release]()
+1. Download the [latest release](https://github.com/simonknittel/obsidian-create-task/releases/latest/download/obsidian-create-task.zip)
 2. Extract the `.zip` file
-3. Move the extracted directory into your vault's plugin directory (`.obsidian/plugins/obsidian-create-task`)
+3. Move the extracted directory into your vault's plugin directory (`.obsidian/plugins/`)
 4. Restart Obsidian
 5. Enable the plugin
 
