@@ -3,7 +3,7 @@
   "name": "Create Task",
   "version": "1.0.0",
   "minAppVersion": "0.15.0",
-  "description": "Plugin to ease the creation of tasks in Obsidian",
+  "description": "Faster creation of tasks in Obsidian.",
   "author": "Simon Knittel",
   "authorUrl": "https://simonknittel.d",
   "isDesktopOnly": false

@@ -1,6 +1,6 @@
 # Create Task
 
-Plugin to ease the creation of tasks in Obsidian
+Faster creation of tasks in Obsidian.
 
 ## Features
 
