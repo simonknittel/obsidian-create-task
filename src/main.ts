@@ -55,12 +55,27 @@ export default class CreateTask extends Plugin {
     new Notice("Create Task: Settings saved");
   }
 
-  async createTask(project: string, taskDescription: string, dueDate: string) {
-    const str = this.compileLine(project, taskDescription, dueDate) + "\n";
+  async createTask(
+    customNoteIndex: "default" | number,
+    taskDescription: string,
+    dueDate: string,
+  ) {
+    let path: string;
+    let str: string;
 
-    const file = this.app.vault.getAbstractFileByPath(
-      this.settings.notes[project]?.path || this.settings.defaultNote,
-    );
+    if (customNoteIndex === "default") {
+      path = this.settings.defaultNote;
+
+      str = this.compileLine(undefined, taskDescription, dueDate) + "\n";
+    } else {
+      const customNote = this.settings.customNotes[customNoteIndex];
+
+      path = customNote.path;
+
+      str = this.compileLine(customNote.tag, taskDescription, dueDate) + "\n";
+    }
+
+    const file = this.app.vault.getAbstractFileByPath(path);
 
     if (!file || !(file instanceof TFile)) {
       new Notice("Create Task: Note not found");
@@ -72,7 +87,11 @@ export default class CreateTask extends Plugin {
     new Notice("Create Task: Task created");
   }
 
-  compileLine(project: string, taskDescription: string, dueDate: string) {
+  compileLine(
+    tag: string | undefined,
+    taskDescription: string,
+    dueDate: string,
+  ) {
     let str = `- [ ]`;
 
     if (taskDescription) {
@@ -81,8 +100,8 @@ export default class CreateTask extends Plugin {
       str += ` My task`;
     }
 
-    if (project !== "default") {
-      str += ` #${project}`;
+    if (tag) {
+      str += ` #${tag}`;
     }
 
     if (dueDate) {

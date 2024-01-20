@@ -4,7 +4,7 @@ import CreateTask from "./main";
 export class CreateTaskModal extends Modal {
   plugin: CreateTask;
 
-  project: string;
+  customNoteIndex: "default" | number;
   taskDescription: string;
   dueDate: string;
 
@@ -14,7 +14,7 @@ export class CreateTaskModal extends Modal {
   constructor(app: App, plugin: CreateTask) {
     super(app);
     this.plugin = plugin;
-    this.project = "default";
+    this.customNoteIndex = "default";
   }
 
   onOpen() {
@@ -24,21 +24,20 @@ export class CreateTaskModal extends Modal {
 
     new Setting(contentEl)
       .setName("📁 Target note")
-      .setDesc("Corresponds to the notes added in the settings")
+      .setDesc("Corresponds to the custom notes added in the settings")
       .addDropdown((dropdown) => {
-        dropdown.addOptions({
-          default: "Default",
-        });
+        dropdown.addOption("default", "Default");
         dropdown.setValue("default");
 
-        for (const [key, { name }] of Object.entries(
-          this.plugin.settings.notes,
-        )) {
-          dropdown.addOption(key, name);
+        for (const [
+          index,
+          customNote,
+        ] of this.plugin.settings.customNotes.entries()) {
+          dropdown.addOption(index.toString(), customNote.name);
         }
 
         dropdown.onChange((value) => {
-          this.project = value;
+          this.customNoteIndex = value === "default" ? value : parseInt(value);
           this.updatePreview();
         });
       });
@@ -78,7 +77,7 @@ export class CreateTaskModal extends Modal {
           this.close();
 
           this.plugin.createTask(
-            this.project,
+            this.customNoteIndex,
             this.taskDescription,
             this.dueDate,
           );
@@ -97,14 +96,28 @@ export class CreateTaskModal extends Modal {
   }
 
   updatePreview() {
-    let path = this.plugin.settings.notes[this.project]?.path;
-    if (!path) path = this.plugin.settings.defaultNote;
-    this.previewElDescription.setText(
-      `The following line will get added to: ${path}`,
-    );
+    if (this.customNoteIndex === "default") {
+      this.previewElDescription.setText(
+        `The following line will get added to: ${this.plugin.settings.defaultNote}`,
+      );
 
-    this.previewElLine.setText(
-      this.plugin.compileLine(this.project, this.taskDescription, this.dueDate),
-    );
+      this.previewElLine.setText(
+        this.plugin.compileLine(undefined, this.taskDescription, this.dueDate),
+      );
+    } else {
+      const customNote = this.plugin.settings.customNotes[this.customNoteIndex];
+
+      this.previewElDescription.setText(
+        `The following line will get added to: ${customNote.path}`,
+      );
+
+      this.previewElLine.setText(
+        this.plugin.compileLine(
+          customNote.tag,
+          this.taskDescription,
+          this.dueDate,
+        ),
+      );
+    }
   }
 }
