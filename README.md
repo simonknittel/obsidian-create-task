@@ -32,8 +32,7 @@ Plugin to ease the creation of tasks in Obsidian
 
 ## Contributing
 
-1. Install nvm and Bun
-2. `nvm install`
-3. `bun install`
-4. `bun run dev`
-5. Reload Obsidian
+1. Install Bun
+2. `bun install`
+3. `bun run dev`
+4. Reload Obsidian
