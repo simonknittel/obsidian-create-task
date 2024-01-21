@@ -1,11 +1,8 @@
 import { parseDate } from "chrono-node";
 import { Notice, Plugin, TFile } from "obsidian";
 import { CreateTaskModal } from "./modal";
-import {
-  CreateTaskSettings,
-  CreateTaskSettingTab,
-  DEFAULT_SETTINGS,
-} from "./settings";
+import { CreateTaskSettingTab, DEFAULT_SETTINGS } from "./settings";
+import { CreateTaskSettings } from "./settings/types";
 
 export default class CreateTask extends Plugin {
   settings: CreateTaskSettings;

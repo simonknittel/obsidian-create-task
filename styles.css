@@ -7,39 +7,52 @@ If your plugin does not need CSS, delete this file.
 
 */
 
-h2.create-task__settings__heading {
-  margin-bottom: 0;
-  font-weight: var(--font-normal);
+.create-task__custom-notes-labels,
+.create-task__add-custom-note-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 150px;
+  gap: var(--size-4-2);
 }
 
-.create-task__settings__table {
+.create-task__add-custom-note-container input {
   width: 100%;
 }
 
-.create-task__settings__table th {
-  text-align: left;
+.create-task__add-custom-note-label {
+  margin-bottom: var(--size-4-2);
+  display: block;
 }
 
-.create-task__settings__table tr {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 100px;
-  gap: var(--size-4-2);
-  padding-top: var(--size-4-2);
-}
-
-.create-task__settings__table td:last-child {
+.create-task__add-custom-note-actions > div,
+.create-task__custom-note-actions {
   display: flex;
-  gap: var(--size-4-2);
-  align-items: center;
+  gap: var(--size-4-1);
   justify-content: flex-end;
 }
 
-.create-task__settings__table input {
-  width: 100%;
+.create-task__add-custom-note-actions > div button,
+.create-task__custom-note-actions button {
+  height: var(--input-height);
 }
 
-.create-task__settings__info {
+.create-task__add-custom-note-actions .create-task__add-custom-note-label {
+  text-align: right;
+}
+
+.create-task__settings-info {
   color: var(--text-muted);
   font-size: var(--font-ui-smaller);
   line-height: var(--line-height-tight);
+  margin-top: var(--size-4-2);
+  margin-bottom: 0;
+}
+
+.create-task__settings-error {
+  color: var(--text-error);
+  margin-top: var(--size-4-2);
+  margin-bottom: 0;
+}
+
+.create-task__custom-note {
+  margin-top: var(--size-4-2);
 }

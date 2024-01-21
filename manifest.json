@@ -1,7 +1,7 @@
 {
   "id": "obsidian-create-task",
   "name": "Create Task",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "minAppVersion": "0.15.0",
   "description": "Faster creation of tasks in Obsidian.",
   "author": "Simon Knittel",
