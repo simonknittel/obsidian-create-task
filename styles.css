@@ -39,7 +39,7 @@ If your plugin does not need CSS, delete this file.
   text-align: right;
 }
 
-.create-task__settings-info {
+.create-task__info {
   color: var(--text-muted);
   font-size: var(--font-ui-smaller);
   line-height: var(--line-height-tight);
@@ -54,5 +54,16 @@ If your plugin does not need CSS, delete this file.
 }
 
 .create-task__custom-note {
+  margin-top: var(--size-4-2);
+}
+
+.create-task__preview {
+  display: block;
+  word-break: break-all;
+  padding: var(--size-4-4);
+  background-color: var(--code-background);
+  white-space: var(--code-whitespace);
+  font-size: var(--code-size);
+  border-radius: var(--radius-s);
   margin-top: var(--size-4-2);
 }

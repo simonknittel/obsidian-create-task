@@ -118,8 +118,12 @@ export class CreateTaskModal extends Modal {
     );
 
     contentEl.createEl("h2", { text: "Preview" });
-    this.previewElDescription = contentEl.createEl("p");
-    this.previewElLine = contentEl.createEl("code");
+    this.previewElDescription = contentEl.createEl("p", {
+      cls: "create-task__info",
+    });
+    this.previewElLine = contentEl.createEl("code", {
+      cls: "create-task__preview",
+    });
     this.updatePreview();
   }
 
@@ -129,18 +133,17 @@ export class CreateTaskModal extends Modal {
   }
 
   updatePreview() {
+    this.previewElDescription.setText(`The following line will get added to: `);
     if (this.notePath) {
-      this.previewElDescription.setText(
-        `The following line will get added to: ${this.notePath}`,
-      );
+      this.previewElDescription.createEl("i", { text: this.notePath });
 
       this.previewElLine.setText(
         this.plugin.compileLine(undefined, this.taskDescription, this.dueDate),
       );
     } else if (this.customNoteIndex === "default") {
-      this.previewElDescription.setText(
-        `The following line will get added to: ${this.plugin.settings.defaultNote}`,
-      );
+      this.previewElDescription.createEl("i", {
+        text: this.plugin.settings.defaultNote,
+      });
 
       this.previewElLine.setText(
         this.plugin.compileLine(undefined, this.taskDescription, this.dueDate),
@@ -148,9 +151,7 @@ export class CreateTaskModal extends Modal {
     } else {
       const customNote = this.plugin.settings.customNotes[this.customNoteIndex];
 
-      this.previewElDescription.setText(
-        `The following line will get added to: ${customNote.path}`,
-      );
+      this.previewElDescription.createEl("i", { text: customNote.path });
 
       this.previewElLine.setText(
         this.plugin.compileLine(

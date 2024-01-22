@@ -70,9 +70,7 @@ export const AddCustomNote = ({ className }: Props) => {
             </p>
           )}
 
-          <p className="create-task__settings-info">
-            The file path of this note.
-          </p>
+          <p className="create-task__info">The file path of this note.</p>
         </div>
 
         <div>
@@ -96,7 +94,7 @@ export const AddCustomNote = ({ className }: Props) => {
             </p>
           )}
 
-          <p className="create-task__settings-info">
+          <p className="create-task__info">
             A custom name for this note. This will only be used within the
             modal.
           </p>
@@ -109,7 +107,7 @@ export const AddCustomNote = ({ className }: Props) => {
 
           <input type="text" id={tagId} defaultValue="" {...register("tag")} />
 
-          <p className="create-task__settings-info">
+          <p className="create-task__info">
             This tag will get added to the task.
           </p>
         </div>
