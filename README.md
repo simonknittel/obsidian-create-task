@@ -3,7 +3,7 @@
 <p align="center">Faster creation of tasks in Obsidian.</p>
 
 <p align="center">
-  <a href="#install">Install</a> • <a href="#usage">Usage</a> • <a href="#contributing">Contributing</a> • <a href="#contributing">Contributing</a>
+  <a href="#features--why">Features & Why</a> • <a href="#install">Install</a> • <a href="#usage">Usage</a> • <a href="#contributing">Contributing</a>
 </p>
 
 <p align="center">
@@ -16,6 +16,16 @@
   </a>
 </p>
 
+## Features & Why
+
+Create Task was made to improve the creation of tasks in Obsidian. It won't handle the task management after the creation since there are already many other plugins like [CardBoard](https://github.com/roovo/obsidian-card-board) and [Tasks](https://github.com/obsidian-tasks-group/obsidian-tasks).
+
+The main feature of this plugin is a modal which guides you through the individual steps of creating a task. You can open this modal in many different ways (see [Usage](#usage) for more details).
+
+- You can configure multiple _target notes_. Other plugins usually save all tasks in a single note. For my use case I want to store the tasks in different notes depending on the project I'm working on.
+- You can configure a tag which will get appended to the created tasks. This is helpful when using the CardBoard plugin since their columns are tag-based.
+- You can create tasks with a due date and use [natural language](https://github.com/wanasit/chrono) for defining the these. You can also configure the output format since other plugins use different formats for handling dates.
+
 ## Install
 
 1. Download the [latest release](https://github.com/simonknittel/obsidian-create-task/releases/latest/download/obsidian-create-task.zip)
@@ -25,10 +35,6 @@
 5. Enable the plugin
 
 ## Usage
-
-- Save tasks to multiple notes
-- Add a tag to a task depending on the note
-- Add a due date to a task using [natural language](https://github.com/wanasit/chrono)
 
 ### Command palette
 
