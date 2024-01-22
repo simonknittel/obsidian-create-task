@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { Save } from "lucide-react";
-import { useEffect, useId } from "react";
+import { useId } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useSettingsContext } from "./SettingsContext";
 
@@ -23,8 +23,9 @@ export const AddCustomNote = ({ className }: Props) => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitSuccessful },
-    reset,
+    formState: { errors },
+    setValue,
+    setFocus,
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
@@ -33,13 +34,13 @@ export const AddCustomNote = ({ className }: Props) => {
       name: data.displayName,
       tag: data.tag,
     });
-  };
 
-  // 🤨 https://react-hook-form.com/docs/useform/reset#:~:text=It%27s%20recommended%20to%20reset%20inside%20useEffect%20after%20submission.
-  useEffect(() => {
-    if (!isSubmitSuccessful) return;
-    reset();
-  }, [isSubmitSuccessful]);
+    setValue("notePath", "");
+    setValue("displayName", "");
+    setValue("tag", "");
+
+    setFocus("notePath");
+  };
 
   return (
     <section className={clsx(className)}>
@@ -65,9 +66,7 @@ export const AddCustomNote = ({ className }: Props) => {
           />
 
           {errors.notePath && (
-            <p className="create-task__settings-error">
-              This field is required.
-            </p>
+            <p className="create-task__error">This field is required.</p>
           )}
 
           <p className="create-task__info">The file path of this note.</p>
@@ -89,9 +88,7 @@ export const AddCustomNote = ({ className }: Props) => {
           />
 
           {errors.displayName && (
-            <p className="create-task__settings-error">
-              This field is required.
-            </p>
+            <p className="create-task__error">This field is required.</p>
           )}
 
           <p className="create-task__info">

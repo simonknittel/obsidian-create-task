@@ -61,9 +61,7 @@ export const CustomNote = ({
           />
 
           {errors.notePath && (
-            <p className="create-task__settings-error">
-              This field is required.
-            </p>
+            <p className="create-task__error">This field is required.</p>
           )}
         </div>
 
@@ -76,9 +74,7 @@ export const CustomNote = ({
           />
 
           {errors.displayName && (
-            <p className="create-task__settings-error">
-              This field is required.
-            </p>
+            <p className="create-task__error">This field is required.</p>
           )}
         </div>
 
@@ -95,8 +91,9 @@ export const CustomNote = ({
           {!first && (
             <button
               type="button"
-              className="clickable-icon"
               onClick={async () => await moveCustomNote("up", index)}
+              title="Move custom note up"
+              className="clickable-icon"
             >
               <ArrowUp className="svg-icon" />
             </button>
@@ -105,8 +102,9 @@ export const CustomNote = ({
           {!last && (
             <button
               type="button"
-              className="clickable-icon"
               onClick={async () => await moveCustomNote("down", index)}
+              title="Move custom note down"
+              className="clickable-icon"
             >
               <ArrowDown className="svg-icon" />
             </button>
@@ -114,13 +112,14 @@ export const CustomNote = ({
 
           <button
             type="button"
-            className="clickable-icon"
             onClick={async () => await removeCustomNote(index)}
+            title="Remove custom note"
+            className="clickable-icon"
           >
             <Trash className="svg-icon" />
           </button>
 
-          <button type="submit" className="mod-cta">
+          <button type="submit" title="Save custom note" className="mod-cta">
             <Save className="svg-icon" />
           </button>
         </div>

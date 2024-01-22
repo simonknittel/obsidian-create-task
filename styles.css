@@ -47,7 +47,7 @@ If your plugin does not need CSS, delete this file.
   margin-bottom: 0;
 }
 
-.create-task__settings-error {
+.create-task__error {
   color: var(--text-error);
   margin-top: var(--size-4-2);
   margin-bottom: 0;
@@ -66,4 +66,10 @@ If your plugin does not need CSS, delete this file.
   font-size: var(--code-size);
   border-radius: var(--radius-s);
   margin-top: var(--size-4-2);
+}
+
+.create-task__create-heading {
+  display: flex;
+  align-items: center;
+  gap: var(--size-4-2);
 }

@@ -1,6 +1,7 @@
 import { parseDate } from "chrono-node";
 import { Notice, Plugin, TFile } from "obsidian";
-import { CreateTaskModal } from "./modal";
+import { CreateTaskCreateModal } from "./CreateModal";
+import { CreateTaskOnboardingModal } from "./OnboardingModal";
 import { CreateTaskSettingTab, DEFAULT_SETTINGS } from "./settings";
 import { CreateTaskSettings } from "./settings/types";
 
@@ -11,19 +12,15 @@ export default class CreateTask extends Plugin {
     await this.loadSettings();
 
     this.addRibbonIcon("check-square", "Create Task", () => {
-      new CreateTaskModal(this.app, this, undefined).open();
+      this.openModal();
     });
 
     this.addCommand({
       id: "open-modal",
       name: "Create",
       icon: "check-square",
-      checkCallback: (checking) => {
-        if (!this.settings.defaultNote) return false;
-
-        if (checking) return true;
-
-        new CreateTaskModal(this.app, this, undefined).open();
+      callback: () => {
+        this.openModal();
       },
     });
 
@@ -33,15 +30,11 @@ export default class CreateTask extends Plugin {
       icon: "settings",
       checkCallback: (checking) => {
         // Make sure this.app.setting is available since it's an undocumented/internal API
-
         // @ts-ignore
         if (checking && this.app.setting?.open && this.app.setting?.openTabById)
           return true;
 
-        // @ts-ignore
-        this.app.setting.open?.();
-        // @ts-ignore
-        this.app.setting.openTabById?.(this.manifest.id);
+        this.openSettings();
       },
     });
 
@@ -59,7 +52,7 @@ export default class CreateTask extends Plugin {
           params["due-date"],
         );
       } else {
-        new CreateTaskModal(this.app, this, {
+        new CreateTaskCreateModal(this.app, this, {
           notePath: params["note-path"],
           taskDescription: params["task-description"],
           dueDate: params["due-date"],
@@ -79,24 +72,41 @@ export default class CreateTask extends Plugin {
     new Notice("Create Task: Settings saved");
   }
 
+  openModal() {
+    if (!this.settings.defaultNote) {
+      new Notice("Create Task: You must set the Default note setting");
+      new CreateTaskOnboardingModal(this.app, this).open();
+      return;
+    }
+
+    new CreateTaskCreateModal(this.app, this, undefined).open();
+  }
+
+  openSettings() {
+    // @ts-ignore
+    this.app.setting.open?.();
+    // @ts-ignore
+    this.app.setting.openTabById?.(this.manifest.id);
+  }
+
   async createTask(
-    customNoteIndex: "default" | string | number,
+    customNoteIndexOrNotePath: "default" | string | number,
     taskDescription: string,
     dueDate: string,
   ) {
     let path: string;
     let str: string;
 
-    if (customNoteIndex === "default") {
+    if (customNoteIndexOrNotePath === "default") {
       path = this.settings.defaultNote;
 
       str = this.compileLine(undefined, taskDescription, dueDate) + "\n";
-    } else if (typeof customNoteIndex === "string") {
-      path = customNoteIndex;
+    } else if (typeof customNoteIndexOrNotePath === "string") {
+      path = customNoteIndexOrNotePath;
 
       str = this.compileLine(undefined, taskDescription, dueDate) + "\n";
     } else {
-      const customNote = this.settings.customNotes[customNoteIndex];
+      const customNote = this.settings.customNotes[customNoteIndexOrNotePath];
 
       path = customNote.path;
 

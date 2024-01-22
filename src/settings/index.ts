@@ -26,7 +26,9 @@ export class CreateTaskSettingTab extends PluginSettingTab {
 
     new Setting(containerEl)
       .setName("Default note")
-      .setDesc("Tasks will be added to this note if no other note is selected")
+      .setDesc(
+        "Tasks will be added to this note if no other note is selected. This is required to use the plugin.",
+      )
       .addText((text) => {
         text
           .setValue(this.plugin.settings.defaultNote)
