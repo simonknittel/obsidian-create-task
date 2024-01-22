@@ -1,17 +1,21 @@
 name: Release Obsidian plugin
 
 on:
+  push:
+    tags:
+      - "*"
   workflow_dispatch:
-    inputs:
-      name:
-        description: "Release name"
-        required: true
 
 jobs:
   build:
     runs-on: ubuntu-22.04
 
     steps:
+      # Since you can choose branches when using workflow_dispatch, we need to ...
+      - name: Make sure only tags are released
+        if: github.ref_type != 'tag'
+        run: exit 1
+
       - uses: actions/checkout@v4.1.1
 
       - uses: oven-sh/setup-bun@v1.1.1
@@ -30,7 +34,7 @@ jobs:
         run: |
           zip -r obsidian-create-task.zip main.js manifest.json styles.css
 
-          gh release create ${{ github.event.inputs.name }} \
-            --title="${{ github.event.inputs.name }}" \
+          gh release create ${{ github.ref_name }} \
+            --title="${{ github.ref_name }}" \
             --draft \
-            obsidian-create-task.zip
+            obsidian-create-task.zip main.js manifest.json styles.css

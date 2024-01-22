@@ -98,7 +98,7 @@ export const AddCustomNote = ({ className }: Props) => {
 
           <p className="create-task__settings-info">
             A custom name for this note. This will only be used within the
-            Create task modal.
+            modal.
           </p>
         </div>
 
