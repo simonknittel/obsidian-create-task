@@ -1,6 +1,6 @@
 import { App, PluginSettingTab, Setting } from "obsidian";
 import { createElement } from "react";
-import { createRoot } from "react-dom/client";
+import { createRoot, Root } from "react-dom/client";
 import CreateTask from "../main";
 import { ReactApp } from "./ReactApp";
 import { CreateTaskSettings } from "./types";
@@ -12,6 +12,7 @@ export const DEFAULT_SETTINGS: CreateTaskSettings = {
 
 export class CreateTaskSettingTab extends PluginSettingTab {
   plugin: CreateTask;
+  root: Root | null = null;
 
   constructor(app: App, plugin: CreateTask) {
     super(app, plugin);
@@ -36,11 +37,15 @@ export class CreateTaskSettingTab extends PluginSettingTab {
       });
 
     const reactRoot = containerEl.createDiv();
-    const root = createRoot(reactRoot);
-    root.render(
+    this.root = createRoot(reactRoot);
+    this.root.render(
       createElement(ReactApp, {
         plugin: this.plugin,
       }),
     );
+  }
+
+  hide() {
+    this.root?.unmount();
   }
 }
