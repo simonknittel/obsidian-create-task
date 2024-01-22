@@ -29,15 +29,31 @@
 - Save tasks to multiple notes
 - Add a tag to a task depending on the note
 - Add a due date to a task using [natural language](https://github.com/wanasit/chrono)
-- Create a new task using `Ctrl + P`
-- Create a new task using the ribbon menu
-- Create a new task using the [URL scheme standard](https://help.obsidian.md/Extending+Obsidian/Obsidian+URI)
-  - This will open Obsidian and open the modal: `obsidian://create-task`
-  - You can use parameters to pre-fill the individual modal inputs
-    - This pre-fills the Target note input: `note-path=Unsorted%20TODOs.md`
-    - This pre-fills the Task description input: `task-description=Do%20stuff`
-    - This pre-fills the Due date input: `due-date=tomorrow`
-    - This will skip the modal and immediately create the task in the specified note: `create=true`
+
+### Command
+
+You can use Obsidian's [command palette](https://help.obsidian.md/Plugins/Command+palette) to open the modal or this plugin's settings.
+
+![Screenshot of the command palette](./docs/command-palette.png)
+
+### Ribbon menu
+
+You can open the modal by clicking this plugin's icon in [Obsidian's ribbon menu](https://help.obsidian.md/User+interface/Ribbon).
+
+![Screenshot of the ribbon menu](./docs/ribbon-menu.png)
+
+### URL scheme / Obsidian URI
+
+This plugin supports the [URL scheme/Obsidian URI standard](https://help.obsidian.md/Extending+Obsidian/Obsidian+URI).
+
+You can start and open the modal by using a link: `obsidian://create-task`.
+
+You can use parameters to prefill parts of the modal:
+
+- This pre-fills the Target note input: `note-path=Unsorted%20TODOs.md`
+- This pre-fills the Task description input: `task-description=Do%20stuff`
+- This pre-fills the Due date input: `due-date=tomorrow`
+- This will skip the modal and immediately create the task in the specified note: `create=true`
 
 ## Contributing
 

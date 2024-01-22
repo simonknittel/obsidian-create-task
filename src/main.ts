@@ -32,12 +32,14 @@ export default class CreateTask extends Plugin {
       name: "Open settings",
       icon: "settings",
       checkCallback: (checking) => {
+        // Make sure this.app.setting is available since it's an undocumented/internal API
+
         // @ts-ignore
         if (checking && this.app.setting?.open && this.app.setting?.openTabById)
           return true;
 
         // @ts-ignore
-        this.app.setting.open();
+        this.app.setting.open?.();
         // @ts-ignore
         this.app.setting.openTabById?.(this.manifest.id);
       },
