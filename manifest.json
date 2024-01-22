@@ -6,5 +6,9 @@
   "description": "Faster creation of tasks in Obsidian.",
   "author": "Simon Knittel",
   "authorUrl": "https://simonknittel.d",
-  "isDesktopOnly": false
+  "isDesktopOnly": false,
+  "fundingUrl": {
+    "Buy Me A Coffee": "https://buymeacoffee.com/simonknittel",
+    "Patreon": "https://patreon.com/simonknittel"
+  }
 }
