@@ -1,21 +1,20 @@
-<div style="text-align: center;">
-  <h1>Create Task</h1>
+<h1 align="center">Create Task</h1>
 
-  <p>Faster creation of tasks in Obsidian.</p>
+<p align="center">Faster creation of tasks in Obsidian.</p>
 
-<a href="#install">Install</a> • <a href="#usage">Usage</a> • <a href="#contributing">Contributing</a> • <a href="#contributing">Contributing</a>
+<p align="center">
+  <a href="#install">Install</a> • <a href="#usage">Usage</a> • <a href="#contributing">Contributing</a> • <a href="#contributing">Contributing</a>
+</p>
 
-  <div style="display: flex; gap: 1em; justify-content: center;">
-    <a href="https://github.com/simonknittel/obsidian-create-task/blob/main/docs/new-task.png" style="display: block;">
-      <img src="https://github.com/simonknittel/obsidian-create-task/blob/main/docs/new-task.png?raw=true" height="240">
-    </a>
+<p align="center">
+  <a href="https://github.com/simonknittel/obsidian-create-task/blob/main/docs/new-task.png" style="display: block;">
+    <img src="https://github.com/simonknittel/obsidian-create-task/blob/main/docs/new-task.png?raw=true" height="240">
+  </a>
 
-    <a href="https://github.com/simonknittel/obsidian-create-task/blob/main/docs/settings.png" style="display: block;">
-      <img src="https://github.com/simonknittel/obsidian-create-task/blob/main/docs/settings.png?raw=true" height="240">
-    </a>
-
-  </div>
-</div>
+  <a href="https://github.com/simonknittel/obsidian-create-task/blob/main/docs/settings.png" style="display: block;">
+    <img src="https://github.com/simonknittel/obsidian-create-task/blob/main/docs/settings.png?raw=true" height="240">
+  </a>
+</p>
 
 ## Install
 
