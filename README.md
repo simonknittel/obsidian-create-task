@@ -30,7 +30,7 @@
 - Add a tag to a task depending on the note
 - Add a due date to a task using [natural language](https://github.com/wanasit/chrono)
 
-### Command
+### Command palette
 
 You can use Obsidian's [command palette](https://help.obsidian.md/Plugins/Command+palette) to open the modal or this plugin's settings.
 
@@ -46,14 +46,47 @@ You can open the modal by clicking this plugin's icon in [Obsidian's ribbon menu
 
 This plugin supports the [URL scheme/Obsidian URI standard](https://help.obsidian.md/Extending+Obsidian/Obsidian+URI).
 
-You can start and open the modal by using a link: `obsidian://create-task`.
+Using this url (`obsidian://create-task`) will automatically start Obsidian and open the modal.
 
 You can use parameters to prefill parts of the modal:
 
-- This pre-fills the Target note input: `note-path=Unsorted%20TODOs.md`
-- This pre-fills the Task description input: `task-description=Do%20stuff`
-- This pre-fills the Due date input: `due-date=tomorrow`
+- This prefills the Target note input: `note-path=Unsorted%20TODOs.md`
+- This prefills the Task description input: `task-description=Do%20stuff`
+- This prefills the Due date input: `due-date=tomorrow`
 - This will skip the modal and immediately create the task in the specified note: `create=true`
+
+#### Examples
+
+Here are some examples of where you could use the url:
+
+##### Raycast
+
+1. Open Raycast
+2. Search for `Create Quicklink`
+3. Fill out the form
+   - Name: Create task
+   - Link: `obsidian://create-task`
+   - Open With: `Obsidian`
+4. Save the Quicklink
+5. Now you can open Raycast and search for `Create task` in order to start Obsidian and open the modal.
+
+<img src="https://github.com/simonknittel/obsidian-create-task/blob/main/docs/raycast-quicklink.png?raw=true" height="240" />
+
+##### Windows Start Menu/Search
+
+1. Create a Windows Shortcut in `C:\Users\<your-username>\AppData\Roaming\Microsoft\Windows\Start Menu\Programs`
+2. For `Type the location of the item` use the url: `obsidian://create-task`
+3. For `Type the name of the item` use: `Create task`
+4. Save the shortcut
+5. Now you can use the Windows Search and search for `Create task`. You can also pin this shortcut to the Start Menu.
+
+##### Google Chrome Bookmark
+
+1. Create a bookmark by right-clicking the bookmarks bar and choosing `Add page...`
+2. For `Name` use: `Create task`
+3. For `URL` use the url: `obsidian://create-task`
+
+<img src="https://github.com/simonknittel/obsidian-create-task/blob/main/docs/google-chome-bookmark.png?raw=true" height="240" />
 
 ## Contributing
 
