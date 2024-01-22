@@ -1,8 +1,31 @@
-# Create Task
+<div style="text-align: center;">
+  <h1>Create Task</h1>
 
-Faster creation of tasks in Obsidian.
+  <p>Faster creation of tasks in Obsidian.</p>
 
-## Features
+<a href="#install">Install</a> • <a href="#usage">Usage</a> • <a href="#contributing">Contributing</a> • <a href="#contributing">Contributing</a>
+
+  <div style="display: flex; gap: 1em; justify-content: center;">
+    <a href="https://github.com/simonknittel/obsidian-create-task/blob/main/docs/new-task.png" style="display: block;">
+      <img src="https://github.com/simonknittel/obsidian-create-task/blob/main/docs/new-task.png?raw=true" height="240">
+    </a>
+
+    <a href="https://github.com/simonknittel/obsidian-create-task/blob/main/docs/settings.png" style="display: block;">
+      <img src="https://github.com/simonknittel/obsidian-create-task/blob/main/docs/settings.png?raw=true" height="240">
+    </a>
+
+  </div>
+</div>
+
+## Install
+
+1. Download the [latest release](https://github.com/simonknittel/obsidian-create-task/releases/latest/download/obsidian-create-task.zip)
+2. Extract the `.zip` file
+3. Move the extracted directory into your vault's plugin directory (`.obsidian/plugins/`)
+4. Restart Obsidian
+5. Enable the plugin
+
+## Usage
 
 - Save tasks to multiple notes
 - Add a tag to a task depending on the note
@@ -16,24 +39,6 @@ Faster creation of tasks in Obsidian.
     - This pre-fills the Task description input: `task-description=Do%20stuff`
     - This pre-fills the Due date input: `due-date=tomorrow`
     - This will skip the modal and immediately create the task in the specified note: `create=true`
-
-## Screenshots
-
-<a href="https://github.com/simonknittel/obsidian-create-task/blob/main/docs/new-task.png">
-	<img src="https://github.com/simonknittel/obsidian-create-task/blob/main/docs/new-task.png?raw=true" height="240" />
-</a>
-
-<a href="https://github.com/simonknittel/obsidian-create-task/blob/main/docs/settings.png">
-	<img src="https://github.com/simonknittel/obsidian-create-task/blob/main/docs/settings.png?raw=true" height="240" />
-</a>
-
-## How to add this plugin to your Obsidian
-
-1. Download the [latest release](https://github.com/simonknittel/obsidian-create-task/releases/latest/download/obsidian-create-task.zip)
-2. Extract the `.zip` file
-3. Move the extracted directory into your vault's plugin directory (`.obsidian/plugins/`)
-4. Restart Obsidian
-5. Enable the plugin
 
 ## Contributing
 
