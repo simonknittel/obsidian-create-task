@@ -10,30 +10,39 @@ export default class CreateTask extends Plugin {
   async onload() {
     await this.loadSettings();
 
-    // This creates an icon in the left ribbon.
     this.addRibbonIcon("check-square", "Create Task", () => {
-      // Called when the user clicks the icon.
       new CreateTaskModal(this.app, this, undefined).open();
     });
 
-    // This adds a complex command that can check whether the current state of the app allows execution of the command
     this.addCommand({
       id: "open-modal",
       name: "Create",
       icon: "check-square",
-      // This command will only show up in Command Palette when the check function returns true
-      checkCallback: (checking: boolean) => {
+      checkCallback: (checking) => {
         if (!this.settings.defaultNote) return false;
 
-        // If checking is true, we're simply "checking" if the command can be run.
-        // If checking is false, then we want to actually perform the operation.
         if (checking) return true;
 
         new CreateTaskModal(this.app, this, undefined).open();
       },
     });
 
-    // This adds a settings tab so the user can configure various aspects of the plugin
+    this.addCommand({
+      id: "open-settings",
+      name: "Open settings",
+      icon: "settings",
+      checkCallback: (checking) => {
+        // @ts-ignore
+        if (checking && this.app.setting?.open && this.app.setting?.openTabById)
+          return true;
+
+        // @ts-ignore
+        this.app.setting.open();
+        // @ts-ignore
+        this.app.setting.openTabById?.(this.manifest.id);
+      },
+    });
+
     this.addSettingTab(new CreateTaskSettingTab(this.app, this));
 
     this.registerObsidianProtocolHandler("create-task", (params) => {
