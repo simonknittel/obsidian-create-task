@@ -7,6 +7,7 @@ import { CreateTaskSettings } from "./types";
 
 export const DEFAULT_SETTINGS: CreateTaskSettings = {
   defaultNote: "",
+  dateFormat: "@due(YYYY-MM-DD)",
   customNotes: [],
 };
 

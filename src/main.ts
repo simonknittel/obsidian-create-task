@@ -159,7 +159,9 @@ export default class CreateTask extends Plugin {
     if (dueDate) {
       const parsedDate = parseDate(dueDate);
       if (parsedDate) {
-        str += ` @due(${parsedDate.getFullYear()}-${(parsedDate.getMonth() + 1).toString().padStart(2, "0")}-${parsedDate.getDate().toString().padStart(2, "0")})`;
+        const format = this.settings.dateFormat || "@due(YYYY-MM-DD)";
+        const dateString = `${parsedDate.getFullYear()}-${(parsedDate.getMonth() + 1).toString().padStart(2, "0")}-${parsedDate.getDate().toString().padStart(2, "0")}`;
+        str += ` ${format.replace("YYYY-MM-DD", dateString)}`;
       }
     }
 

@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import CreateTask from "src/main";
 import { AddCustomNote } from "./AddCustomNote";
 import { CustomNotes } from "./CustomNotes";
+import { DateFormat } from "./DateFormat";
 import { DefaultNote } from "./DefaultNote";
 import { ObsidianProvider } from "./ObsidianContext";
 
@@ -14,6 +15,7 @@ export const ReactApp = ({ plugin }: Props) => {
     <StrictMode>
       <ObsidianProvider plugin={plugin}>
         <DefaultNote />
+        <DateFormat />
         <AddCustomNote />
         <CustomNotes />
       </ObsidianProvider>
