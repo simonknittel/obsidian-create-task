@@ -11,7 +11,7 @@ export const Heading = ({ className }: Props) => {
 
   return (
     <div className={clsx(className, "create-task__create-modal-heading")}>
-      <h1>Create Task</h1>
+      <h1>Create task</h1>
 
       <button
         type="button"
