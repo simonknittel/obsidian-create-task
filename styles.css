@@ -59,6 +59,10 @@ If your plugin does not need CSS, delete this file.
   margin-top: var(--size-4-2);
 }
 
+.create-task__create-modal {
+  container-type: inline-size;
+}
+
 .create-task__create-modal-heading {
   display: flex;
   justify-content: space-between;
@@ -71,12 +75,20 @@ If your plugin does not need CSS, delete this file.
 
 .create-task__create-modal-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--size-4-8);
+  grid-template-rows: auto auto;
+  gap: var(--size-4-4);
   border-top: 1px solid var(--background-modifier-border);
   border-bottom: 1px solid var(--background-modifier-border);
   padding-top: var(--size-4-4);
   padding-bottom: var(--size-4-4);
+}
+
+@container (min-width: 500px) {
+  .create-task__create-modal-row {
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--size-4-8);
+  }
 }
 
 .create-task__create-modal-row + .create-task__create-modal-row {
