@@ -1,13 +1,13 @@
 import clsx from "clsx";
 import { CustomNote } from "./CustomNote";
-import { useSettingsContext } from "./SettingsContext";
+import { useObsidianContext } from "./ObsidianContext";
 
 type Props = Readonly<{
   className?: string;
 }>;
 
 export const CustomNotes = ({ className }: Props) => {
-  const { customNotes } = useSettingsContext();
+  const { customNotes } = useObsidianContext();
 
   return (
     <section className={clsx(className)}>

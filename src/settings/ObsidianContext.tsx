@@ -9,7 +9,8 @@ import {
 import CreateTask from "src/main";
 import { CustomNote } from "./types";
 
-type SettingsContextInterface = {
+type ObsidianContextInterface = {
+  plugin: CreateTask;
   customNotes: CustomNote[];
   addCustomNote: (customNote: CustomNote) => Promise<void>;
   updateCustomNote: (index: number, customNote: CustomNote) => Promise<void>;
@@ -17,7 +18,7 @@ type SettingsContextInterface = {
   removeCustomNote: (index: number) => Promise<void>;
 };
 
-const SettingsContext = createContext<SettingsContextInterface | undefined>(
+const ObsidianContext = createContext<ObsidianContextInterface | undefined>(
   undefined,
 );
 
@@ -26,7 +27,7 @@ type ProviderProps = Readonly<{
   plugin: CreateTask;
 }>;
 
-export const SettingsProvider = ({ children, plugin }: ProviderProps) => {
+export const ObsidianProvider = ({ children, plugin }: ProviderProps) => {
   const [customNotes, _setCustomNotes] = useState<CustomNote[]>(
     structuredClone(plugin.settings.customNotes),
   );
@@ -92,6 +93,7 @@ export const SettingsProvider = ({ children, plugin }: ProviderProps) => {
 
   const value = useMemo(
     () => ({
+      plugin,
       customNotes,
       addCustomNote,
       updateCustomNote,
@@ -99,6 +101,7 @@ export const SettingsProvider = ({ children, plugin }: ProviderProps) => {
       removeCustomNote,
     }),
     [
+      plugin,
       customNotes,
       addCustomNote,
       updateCustomNote,
@@ -108,9 +111,9 @@ export const SettingsProvider = ({ children, plugin }: ProviderProps) => {
   );
 
   return (
-    <SettingsContext.Provider value={value}>
+    <ObsidianContext.Provider value={value}>
       {children}
-    </SettingsContext.Provider>
+    </ObsidianContext.Provider>
   );
 };
 
@@ -118,11 +121,11 @@ export const SettingsProvider = ({ children, plugin }: ProviderProps) => {
  * Check for undefined since the defaultValue of the context is undefined. If
  * it's still undefined, the provider component is missing.
  */
-export function useSettingsContext() {
-  const context = useContext(SettingsContext);
+export function useObsidianContext() {
+  const context = useContext(ObsidianContext);
   if (!context)
     throw new Error(
-      "Provider for useSettingsContext() is missing! Make sure to use useSettingsContext() as child of <SettingsProvider>...</SettingsProvider>",
+      "Provider for useObsidianContext() is missing! Make sure to use useObsidianContext() as child of <ObsidianProvider>...</ObsidianProvider>",
     );
   return context;
 }

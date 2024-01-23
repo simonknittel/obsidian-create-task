@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { ArrowDown, ArrowUp, Save, Trash } from "lucide-react";
 import { useId } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useSettingsContext } from "./SettingsContext";
+import { useObsidianContext } from "./ObsidianContext";
 import { type CustomNote as CustomNoteType } from "./types";
 
 type Inputs = {
@@ -27,7 +27,7 @@ export const CustomNote = ({
   last,
 }: Props) => {
   const { updateCustomNote, moveCustomNote, removeCustomNote } =
-    useSettingsContext();
+    useObsidianContext();
   const notePathId = useId();
   const displayNameId = useId();
   const tagId = useId();

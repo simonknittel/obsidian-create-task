@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { Save } from "lucide-react";
 import { useId } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useSettingsContext } from "./SettingsContext";
+import { useObsidianContext } from "./ObsidianContext";
 
 type Inputs = {
   notePath: string;
@@ -15,7 +15,7 @@ type Props = Readonly<{
 }>;
 
 export const AddCustomNote = ({ className }: Props) => {
-  const { addCustomNote } = useSettingsContext();
+  const { addCustomNote } = useObsidianContext();
   const notePathId = useId();
   const displayNameId = useId();
   const tagId = useId();

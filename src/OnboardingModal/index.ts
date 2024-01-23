@@ -17,7 +17,7 @@ export class CreateTaskOnboardingModal extends Modal {
     let defaultNote: string;
 
     new Setting(contentEl)
-      .setName("Default note")
+      .setName("Default note (required)")
       .setDesc(
         "Tasks will be added to this note if no other note is selected. This is required to use the plugin.",
       )
