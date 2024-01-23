@@ -10,10 +10,10 @@ export const CustomNotes = ({ className }: Props) => {
   const { customNotes } = useObsidianContext();
 
   return (
-    <section className={clsx(className)}>
+    <section className={clsx(className, "create-task__custom-notes")}>
       <h2>Custom notes</h2>
 
-      <div className="create-task__custom-notes-labels">
+      <div className="create-task__custom-notes-column-labels">
         <div>Note path</div>
         <div>Display name</div>
         <div>Tag (optional)</div>

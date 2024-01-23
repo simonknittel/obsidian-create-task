@@ -1,0 +1,45 @@
+.create-task__add-custom-note {
+  container-type: inline-size;
+}
+
+.create-task__add-custom-note-grid {
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  gap: var(--size-4-2);
+}
+
+.create-task__add-custom-note-grid input {
+  width: 100%;
+}
+
+.create-task__add-custom-note-column-label {
+  margin-bottom: var(--size-4-2);
+  display: block;
+}
+
+.create-task__add-custom-note-actions {
+  text-align: right;
+}
+
+.create-task__add-custom-note-actions
+  .create-task__add-custom-note-column-label {
+  display: none;
+}
+
+.create-task__add-custom-note-actions button {
+  height: var(--input-height);
+  gap: var(--size-4-2);
+}
+
+@container (min-width: 600px) {
+  .create-task__add-custom-note-grid {
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr 1fr 170px;
+    gap: var(--size-4-2);
+  }
+
+  .create-task__add-custom-note-actions
+    .create-task__add-custom-note-column-label {
+    display: block;
+  }
+}

@@ -1,0 +1,50 @@
+.create-task__custom-notes {
+  container-type: inline-size;
+}
+
+.create-task__custom-notes-column-labels {
+  display: none;
+}
+
+.create-task__custom-note-grid {
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  gap: var(--size-4-2);
+}
+
+.create-task__custom-note-row-label {
+  display: block;
+  margin-bottom: var(--size-4-2);
+}
+
+.create-task__custom-note-grid input {
+  width: 100%;
+}
+
+.create-task__custom-note-actions {
+  display: flex;
+  gap: var(--size-4-1);
+  justify-content: flex-end;
+}
+
+.create-task__custom-note-actions button {
+  height: var(--input-height);
+}
+
+.create-task__custom-note {
+  margin-top: var(--size-4-2);
+}
+
+@container (min-width: 600px) {
+  .create-task__custom-notes-column-labels,
+  .create-task__custom-note-grid {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr 1fr 170px;
+    gap: var(--size-4-2);
+  }
+
+  .create-task__custom-note-row-label {
+    display: none;
+  }
+}

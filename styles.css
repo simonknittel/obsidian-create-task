@@ -1,78 +1,15 @@
-/*
-
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
-
-If your plugin does not need CSS, delete this file.
-
-*/
-
-.create-task__custom-notes-labels,
-.create-task__add-custom-note-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 150px;
-  gap: var(--size-4-2);
-}
-
-.create-task__add-custom-note-container input {
-  width: 100%;
-}
-
-.create-task__add-custom-note-label {
-  margin-bottom: var(--size-4-2);
-  display: block;
-}
-
-.create-task__add-custom-note-actions > div,
-.create-task__custom-note-actions {
-  display: flex;
-  gap: var(--size-4-1);
-  justify-content: flex-end;
-}
-
-.create-task__add-custom-note-actions > div button,
-.create-task__custom-note-actions button {
-  height: var(--input-height);
-}
-
-.create-task__add-custom-note-actions .create-task__add-custom-note-label {
-  text-align: right;
-}
-
-.create-task__info {
-  color: var(--text-muted);
-  font-size: var(--font-ui-smaller);
-  line-height: var(--line-height-tight);
-  margin-top: var(--size-4-2);
-  margin-bottom: 0;
-}
-
-.create-task__error {
-  color: var(--text-error);
-  font-size: var(--font-ui-smaller);
-  line-height: var(--line-height-tight);
-  margin-top: var(--size-4-2);
-  margin-bottom: 0;
-}
-
-.create-task__custom-note {
-  margin-top: var(--size-4-2);
-}
-
+/* src/CreateModal/styles.css */
 .create-task__create-modal {
   container-type: inline-size;
 }
-
 .create-task__create-modal-heading {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
 .create-task__create-modal-heading button {
   gap: var(--size-4-2);
 }
-
 .create-task__create-modal-row {
   display: grid;
   grid-template-rows: auto auto;
@@ -82,7 +19,6 @@ If your plugin does not need CSS, delete this file.
   padding-top: var(--size-4-4);
   padding-bottom: var(--size-4-4);
 }
-
 @container (min-width: 500px) {
   .create-task__create-modal-row {
     grid-template-rows: auto;
@@ -90,33 +26,27 @@ If your plugin does not need CSS, delete this file.
     gap: var(--size-4-8);
   }
 }
-
 .create-task__create-modal-row + .create-task__create-modal-row {
   border-top: none;
 }
-
 .create-task__create-modal-left {
   display: flex;
   gap: var(--size-4-2);
 }
-
 .create-task__create-modal-right select,
 .create-task__create-modal-right input,
 .create-task__create-modal-right textarea {
   width: 100%;
 }
-
 .create-task__create-modal-right textarea {
   resize: vertical;
 }
-
 .create-task__create-modal-actions {
   display: flex;
   justify-content: flex-end;
   gap: var(--size-4-2);
   margin-top: var(--size-4-4);
 }
-
 .create-task__preview {
   display: block;
   word-break: break-all;
@@ -127,3 +57,102 @@ If your plugin does not need CSS, delete this file.
   border-radius: var(--radius-s);
   margin-top: var(--size-4-2);
 }
+
+/* src/settings/AddCustomNote.css */
+.create-task__add-custom-note {
+  container-type: inline-size;
+}
+.create-task__add-custom-note-grid {
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  gap: var(--size-4-2);
+}
+.create-task__add-custom-note-grid input {
+  width: 100%;
+}
+.create-task__add-custom-note-column-label {
+  margin-bottom: var(--size-4-2);
+  display: block;
+}
+.create-task__add-custom-note-actions {
+  text-align: right;
+}
+.create-task__add-custom-note-actions .create-task__add-custom-note-column-label {
+  display: none;
+}
+.create-task__add-custom-note-actions button {
+  height: var(--input-height);
+  gap: var(--size-4-2);
+}
+@container (min-width: 600px) {
+  .create-task__add-custom-note-grid {
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr 1fr 170px;
+    gap: var(--size-4-2);
+  }
+  .create-task__add-custom-note-actions .create-task__add-custom-note-column-label {
+    display: block;
+  }
+}
+
+/* src/settings/CustomNotes.css */
+.create-task__custom-notes {
+  container-type: inline-size;
+}
+.create-task__custom-notes-column-labels {
+  display: none;
+}
+.create-task__custom-note-grid {
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  gap: var(--size-4-2);
+}
+.create-task__custom-note-row-label {
+  display: block;
+  margin-bottom: var(--size-4-2);
+}
+.create-task__custom-note-grid input {
+  width: 100%;
+}
+.create-task__custom-note-actions {
+  display: flex;
+  gap: var(--size-4-1);
+  justify-content: flex-end;
+}
+.create-task__custom-note-actions button {
+  height: var(--input-height);
+}
+.create-task__custom-note {
+  margin-top: var(--size-4-2);
+}
+@container (min-width: 600px) {
+  .create-task__custom-notes-column-labels,
+  .create-task__custom-note-grid {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr 1fr 170px;
+    gap: var(--size-4-2);
+  }
+  .create-task__custom-note-row-label {
+    display: none;
+  }
+}
+
+/* src/settings/styles.css */
+
+/* src/styles.css */
+.create-task__info {
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+  line-height: var(--line-height-tight);
+  margin-top: var(--size-4-2);
+  margin-bottom: 0;
+}
+.create-task__error {
+  color: var(--text-error);
+  font-size: var(--font-ui-smaller);
+  line-height: var(--line-height-tight);
+  margin-top: var(--size-4-2);
+  margin-bottom: 0;
+}
+/*# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsic3JjL0NyZWF0ZU1vZGFsL3N0eWxlcy5jc3MiLCAic3JjL3NldHRpbmdzL0FkZEN1c3RvbU5vdGUuY3NzIiwgInNyYy9zZXR0aW5ncy9DdXN0b21Ob3Rlcy5jc3MiLCAic3JjL3N0eWxlcy5jc3MiXSwKICAic291cmNlc0NvbnRlbnQiOiBbIi5jcmVhdGUtdGFza19fY3JlYXRlLW1vZGFsIHtcbiAgY29udGFpbmVyLXR5cGU6IGlubGluZS1zaXplO1xufVxuXG4uY3JlYXRlLXRhc2tfX2NyZWF0ZS1tb2RhbC1oZWFkaW5nIHtcbiAgZGlzcGxheTogZmxleDtcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xufVxuXG4uY3JlYXRlLXRhc2tfX2NyZWF0ZS1tb2RhbC1oZWFkaW5nIGJ1dHRvbiB7XG4gIGdhcDogdmFyKC0tc2l6ZS00LTIpO1xufVxuXG4uY3JlYXRlLXRhc2tfX2NyZWF0ZS1tb2RhbC1yb3cge1xuICBkaXNwbGF5OiBncmlkO1xuICBncmlkLXRlbXBsYXRlLXJvd3M6IGF1dG8gYXV0bztcbiAgZ2FwOiB2YXIoLS1zaXplLTQtNCk7XG4gIGJvcmRlci10b3A6IDFweCBzb2xpZCB2YXIoLS1iYWNrZ3JvdW5kLW1vZGlmaWVyLWJvcmRlcik7XG4gIGJvcmRlci1ib3R0b206IDFweCBzb2xpZCB2YXIoLS1iYWNrZ3JvdW5kLW1vZGlmaWVyLWJvcmRlcik7XG4gIHBhZGRpbmctdG9wOiB2YXIoLS1zaXplLTQtNCk7XG4gIHBhZGRpbmctYm90dG9tOiB2YXIoLS1zaXplLTQtNCk7XG59XG5cbkBjb250YWluZXIgKG1pbi13aWR0aDogNTAwcHgpIHtcbiAgLmNyZWF0ZS10YXNrX19jcmVhdGUtbW9kYWwtcm93IHtcbiAgICBncmlkLXRlbXBsYXRlLXJvd3M6IGF1dG87XG4gICAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiAxZnIgMWZyO1xuICAgIGdhcDogdmFyKC0tc2l6ZS00LTgpO1xuICB9XG59XG5cbi5jcmVhdGUtdGFza19fY3JlYXRlLW1vZGFsLXJvdyArIC5jcmVhdGUtdGFza19fY3JlYXRlLW1vZGFsLXJvdyB7XG4gIGJvcmRlci10b3A6IG5vbmU7XG59XG5cbi5jcmVhdGUtdGFza19fY3JlYXRlLW1vZGFsLWxlZnQge1xuICBkaXNwbGF5OiBmbGV4O1xuICBnYXA6IHZhcigtLXNpemUtNC0yKTtcbn1cblxuLmNyZWF0ZS10YXNrX19jcmVhdGUtbW9kYWwtcmlnaHQgc2VsZWN0LFxuLmNyZWF0ZS10YXNrX19jcmVhdGUtbW9kYWwtcmlnaHQgaW5wdXQsXG4uY3JlYXRlLXRhc2tfX2NyZWF0ZS1tb2RhbC1yaWdodCB0ZXh0YXJlYSB7XG4gIHdpZHRoOiAxMDAlO1xufVxuXG4uY3JlYXRlLXRhc2tfX2NyZWF0ZS1tb2RhbC1yaWdodCB0ZXh0YXJlYSB7XG4gIHJlc2l6ZTogdmVydGljYWw7XG59XG5cbi5jcmVhdGUtdGFza19fY3JlYXRlLW1vZGFsLWFjdGlvbnMge1xuICBkaXNwbGF5OiBmbGV4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtZW5kO1xuICBnYXA6IHZhcigtLXNpemUtNC0yKTtcbiAgbWFyZ2luLXRvcDogdmFyKC0tc2l6ZS00LTQpO1xufVxuXG4uY3JlYXRlLXRhc2tfX3ByZXZpZXcge1xuICBkaXNwbGF5OiBibG9jaztcbiAgd29yZC1icmVhazogYnJlYWstYWxsO1xuICBwYWRkaW5nOiB2YXIoLS1zaXplLTQtNCk7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWNvZGUtYmFja2dyb3VuZCk7XG4gIHdoaXRlLXNwYWNlOiB2YXIoLS1jb2RlLXdoaXRlc3BhY2UpO1xuICBmb250LXNpemU6IHZhcigtLWNvZGUtc2l6ZSk7XG4gIGJvcmRlci1yYWRpdXM6IHZhcigtLXJhZGl1cy1zKTtcbiAgbWFyZ2luLXRvcDogdmFyKC0tc2l6ZS00LTIpO1xufVxuIiwgIi5jcmVhdGUtdGFza19fYWRkLWN1c3RvbS1ub3RlIHtcbiAgY29udGFpbmVyLXR5cGU6IGlubGluZS1zaXplO1xufVxuXG4uY3JlYXRlLXRhc2tfX2FkZC1jdXN0b20tbm90ZS1ncmlkIHtcbiAgZGlzcGxheTogZ3JpZDtcbiAgZ3JpZC10ZW1wbGF0ZS1yb3dzOiBhdXRvIGF1dG8gYXV0byBhdXRvO1xuICBnYXA6IHZhcigtLXNpemUtNC0yKTtcbn1cblxuLmNyZWF0ZS10YXNrX19hZGQtY3VzdG9tLW5vdGUtZ3JpZCBpbnB1dCB7XG4gIHdpZHRoOiAxMDAlO1xufVxuXG4uY3JlYXRlLXRhc2tfX2FkZC1jdXN0b20tbm90ZS1jb2x1bW4tbGFiZWwge1xuICBtYXJnaW4tYm90dG9tOiB2YXIoLS1zaXplLTQtMik7XG4gIGRpc3BsYXk6IGJsb2NrO1xufVxuXG4uY3JlYXRlLXRhc2tfX2FkZC1jdXN0b20tbm90ZS1hY3Rpb25zIHtcbiAgdGV4dC1hbGlnbjogcmlnaHQ7XG59XG5cbi5jcmVhdGUtdGFza19fYWRkLWN1c3RvbS1ub3RlLWFjdGlvbnNcbiAgLmNyZWF0ZS10YXNrX19hZGQtY3VzdG9tLW5vdGUtY29sdW1uLWxhYmVsIHtcbiAgZGlzcGxheTogbm9uZTtcbn1cblxuLmNyZWF0ZS10YXNrX19hZGQtY3VzdG9tLW5vdGUtYWN0aW9ucyBidXR0b24ge1xuICBoZWlnaHQ6IHZhcigtLWlucHV0LWhlaWdodCk7XG4gIGdhcDogdmFyKC0tc2l6ZS00LTIpO1xufVxuXG5AY29udGFpbmVyIChtaW4td2lkdGg6IDYwMHB4KSB7XG4gIC5jcmVhdGUtdGFza19fYWRkLWN1c3RvbS1ub3RlLWdyaWQge1xuICAgIGdyaWQtdGVtcGxhdGUtcm93czogYXV0bztcbiAgICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IDFmciAxZnIgMWZyIDE3MHB4O1xuICAgIGdhcDogdmFyKC0tc2l6ZS00LTIpO1xuICB9XG5cbiAgLmNyZWF0ZS10YXNrX19hZGQtY3VzdG9tLW5vdGUtYWN0aW9uc1xuICAgIC5jcmVhdGUtdGFza19fYWRkLWN1c3RvbS1ub3RlLWNvbHVtbi1sYWJlbCB7XG4gICAgZGlzcGxheTogYmxvY2s7XG4gIH1cbn1cbiIsICIuY3JlYXRlLXRhc2tfX2N1c3RvbS1ub3RlcyB7XG4gIGNvbnRhaW5lci10eXBlOiBpbmxpbmUtc2l6ZTtcbn1cblxuLmNyZWF0ZS10YXNrX19jdXN0b20tbm90ZXMtY29sdW1uLWxhYmVscyB7XG4gIGRpc3BsYXk6IG5vbmU7XG59XG5cbi5jcmVhdGUtdGFza19fY3VzdG9tLW5vdGUtZ3JpZCB7XG4gIGRpc3BsYXk6IGdyaWQ7XG4gIGdyaWQtdGVtcGxhdGUtcm93czogYXV0byBhdXRvIGF1dG8gYXV0bztcbiAgZ2FwOiB2YXIoLS1zaXplLTQtMik7XG59XG5cbi5jcmVhdGUtdGFza19fY3VzdG9tLW5vdGUtcm93LWxhYmVsIHtcbiAgZGlzcGxheTogYmxvY2s7XG4gIG1hcmdpbi1ib3R0b206IHZhcigtLXNpemUtNC0yKTtcbn1cblxuLmNyZWF0ZS10YXNrX19jdXN0b20tbm90ZS1ncmlkIGlucHV0IHtcbiAgd2lkdGg6IDEwMCU7XG59XG5cbi5jcmVhdGUtdGFza19fY3VzdG9tLW5vdGUtYWN0aW9ucyB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGdhcDogdmFyKC0tc2l6ZS00LTEpO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtZW5kO1xufVxuXG4uY3JlYXRlLXRhc2tfX2N1c3RvbS1ub3RlLWFjdGlvbnMgYnV0dG9uIHtcbiAgaGVpZ2h0OiB2YXIoLS1pbnB1dC1oZWlnaHQpO1xufVxuXG4uY3JlYXRlLXRhc2tfX2N1c3RvbS1ub3RlIHtcbiAgbWFyZ2luLXRvcDogdmFyKC0tc2l6ZS00LTIpO1xufVxuXG5AY29udGFpbmVyIChtaW4td2lkdGg6IDYwMHB4KSB7XG4gIC5jcmVhdGUtdGFza19fY3VzdG9tLW5vdGVzLWNvbHVtbi1sYWJlbHMsXG4gIC5jcmVhdGUtdGFza19fY3VzdG9tLW5vdGUtZ3JpZCB7XG4gICAgZGlzcGxheTogZ3JpZDtcbiAgICBncmlkLXRlbXBsYXRlLXJvd3M6IGF1dG87XG4gICAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiAxZnIgMWZyIDFmciAxNzBweDtcbiAgICBnYXA6IHZhcigtLXNpemUtNC0yKTtcbiAgfVxuXG4gIC5jcmVhdGUtdGFza19fY3VzdG9tLW5vdGUtcm93LWxhYmVsIHtcbiAgICBkaXNwbGF5OiBub25lO1xuICB9XG59XG4iLCAiLypcblxuVGhpcyBDU1MgZmlsZSB3aWxsIGJlIGluY2x1ZGVkIHdpdGggeW91ciBwbHVnaW4sIGFuZFxuYXZhaWxhYmxlIGluIHRoZSBhcHAgd2hlbiB5b3VyIHBsdWdpbiBpcyBlbmFibGVkLlxuXG5JZiB5b3VyIHBsdWdpbiBkb2VzIG5vdCBuZWVkIENTUywgZGVsZXRlIHRoaXMgZmlsZS5cblxuKi9cblxuQGltcG9ydCBcIi4vQ3JlYXRlTW9kYWwvc3R5bGVzLmNzc1wiO1xuQGltcG9ydCBcIi4vc2V0dGluZ3Mvc3R5bGVzLmNzc1wiO1xuXG4uY3JlYXRlLXRhc2tfX2luZm8ge1xuICBjb2xvcjogdmFyKC0tdGV4dC1tdXRlZCk7XG4gIGZvbnQtc2l6ZTogdmFyKC0tZm9udC11aS1zbWFsbGVyKTtcbiAgbGluZS1oZWlnaHQ6IHZhcigtLWxpbmUtaGVpZ2h0LXRpZ2h0KTtcbiAgbWFyZ2luLXRvcDogdmFyKC0tc2l6ZS00LTIpO1xuICBtYXJnaW4tYm90dG9tOiAwO1xufVxuXG4uY3JlYXRlLXRhc2tfX2Vycm9yIHtcbiAgY29sb3I6IHZhcigtLXRleHQtZXJyb3IpO1xuICBmb250LXNpemU6IHZhcigtLWZvbnQtdWktc21hbGxlcik7XG4gIGxpbmUtaGVpZ2h0OiB2YXIoLS1saW5lLWhlaWdodC10aWdodCk7XG4gIG1hcmdpbi10b3A6IHZhcigtLXNpemUtNC0yKTtcbiAgbWFyZ2luLWJvdHRvbTogMDtcbn1cbiJdLAogICJtYXBwaW5ncyI6ICI7QUFBQTtBQUNFO0FBQUE7QUFHRjtBQUNFO0FBQ0E7QUFDQTtBQUFBO0FBR0Y7QUFDRTtBQUFBO0FBR0Y7QUFDRTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUFBO0FBR0Y7QUFDRTtBQUNFO0FBQ0E7QUFDQTtBQUFBO0FBQUE7QUFJSjtBQUNFO0FBQUE7QUFHRjtBQUNFO0FBQ0E7QUFBQTtBQUdGO0FBQUE7QUFBQTtBQUdFO0FBQUE7QUFHRjtBQUNFO0FBQUE7QUFHRjtBQUNFO0FBQ0E7QUFDQTtBQUNBO0FBQUE7QUFHRjtBQUNFO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFBQTs7O0FDbEVGO0FBQ0U7QUFBQTtBQUdGO0FBQ0U7QUFDQTtBQUNBO0FBQUE7QUFHRjtBQUNFO0FBQUE7QUFHRjtBQUNFO0FBQ0E7QUFBQTtBQUdGO0FBQ0U7QUFBQTtBQUdGO0FBRUU7QUFBQTtBQUdGO0FBQ0U7QUFDQTtBQUFBO0FBR0Y7QUFDRTtBQUNFO0FBQ0E7QUFDQTtBQUFBO0FBR0Y7QUFFRTtBQUFBO0FBQUE7OztBQzFDSjtBQUNFO0FBQUE7QUFHRjtBQUNFO0FBQUE7QUFHRjtBQUNFO0FBQ0E7QUFDQTtBQUFBO0FBR0Y7QUFDRTtBQUNBO0FBQUE7QUFHRjtBQUNFO0FBQUE7QUFHRjtBQUNFO0FBQ0E7QUFDQTtBQUFBO0FBR0Y7QUFDRTtBQUFBO0FBR0Y7QUFDRTtBQUFBO0FBR0Y7QUFDRTtBQUFBO0FBRUU7QUFDQTtBQUNBO0FBQ0E7QUFBQTtBQUdGO0FBQ0U7QUFBQTtBQUFBOzs7OztBQ25DSjtBQUNFO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFBQTtBQUdGO0FBQ0U7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUFBOyIsCiAgIm5hbWVzIjogW10KfQo= */

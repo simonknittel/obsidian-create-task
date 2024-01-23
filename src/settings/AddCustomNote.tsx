@@ -43,17 +43,17 @@ export const AddCustomNote = ({ className }: Props) => {
   };
 
   return (
-    <section className={clsx(className)}>
+    <section className={clsx(className, "create-task__add-custom-note")}>
       <h2>Add custom note</h2>
 
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="create-task__add-custom-note-container"
+        className="create-task__add-custom-note-grid"
       >
         <div>
           <label
             htmlFor={notePathId}
-            className="create-task__add-custom-note-label"
+            className="create-task__add-custom-note-column-label"
           >
             Note path
           </label>
@@ -75,7 +75,7 @@ export const AddCustomNote = ({ className }: Props) => {
         <div>
           <label
             htmlFor={displayNameId}
-            className="create-task__add-custom-note-label"
+            className="create-task__add-custom-note-column-label"
           >
             Display name
           </label>
@@ -98,7 +98,10 @@ export const AddCustomNote = ({ className }: Props) => {
         </div>
 
         <div>
-          <label htmlFor={tagId} className="create-task__add-custom-note-label">
+          <label
+            htmlFor={tagId}
+            className="create-task__add-custom-note-column-label"
+          >
             Tag (optional)
           </label>
 
@@ -110,13 +113,14 @@ export const AddCustomNote = ({ className }: Props) => {
         </div>
 
         <div className="create-task__add-custom-note-actions">
-          <span className="create-task__add-custom-note-label">Actions</span>
-
-          <div>
-            <button type="submit" className="mod-cta">
-              <Save className="svg-icon" />
-            </button>
+          <div className="create-task__add-custom-note-column-label">
+            &nbsp;
           </div>
+
+          <button type="submit" className="mod-cta">
+            Add
+            <Save className="svg-icon" />
+          </button>
         </div>
       </form>
     </section>

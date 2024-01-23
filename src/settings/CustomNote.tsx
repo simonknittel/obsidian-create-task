@@ -50,9 +50,13 @@ export const CustomNote = ({
     <section className={clsx(className, "create-task__custom-note")}>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="create-task__add-custom-note-container"
+        className="create-task__custom-note-grid"
       >
         <div>
+          <label id={notePathId} className="create-task__custom-note-row-label">
+            Note path
+          </label>
+
           <input
             type="text"
             id={notePathId}
@@ -66,6 +70,10 @@ export const CustomNote = ({
         </div>
 
         <div>
+          <label id={notePathId} className="create-task__custom-note-row-label">
+            Display name
+          </label>
+
           <input
             type="text"
             id={displayNameId}
@@ -79,6 +87,10 @@ export const CustomNote = ({
         </div>
 
         <div>
+          <label id={notePathId} className="create-task__custom-note-row-label">
+            Tag (optional)
+          </label>
+
           <input
             type="text"
             id={tagId}
