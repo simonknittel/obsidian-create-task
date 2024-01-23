@@ -6,6 +6,7 @@ type Props = Readonly<{
   notePath?: string;
   customNoteIndex: "default" | string;
   taskDescription: string;
+  taskDetails: string;
   dueDate: string;
 }>;
 
@@ -14,6 +15,7 @@ export const Preview = ({
   notePath,
   customNoteIndex,
   taskDescription,
+  taskDetails,
   dueDate,
 }: Props) => {
   const { plugin } = useObsidianContext();
@@ -23,14 +25,19 @@ export const Preview = ({
 
   if (notePath) {
     to = notePath;
-    task = plugin.compileLine(undefined, taskDescription, dueDate);
+    task = plugin.compileLine(undefined, taskDescription, dueDate, taskDetails);
   } else if (customNoteIndex === "default") {
     to = plugin.settings.defaultNote;
-    task = plugin.compileLine(undefined, taskDescription, dueDate);
+    task = plugin.compileLine(undefined, taskDescription, dueDate, taskDetails);
   } else {
     const customNote = plugin.settings.customNotes[parseInt(customNoteIndex)];
     to = customNote.path;
-    task = plugin.compileLine(customNote.tag, taskDescription, dueDate);
+    task = plugin.compileLine(
+      customNote.tag,
+      taskDescription,
+      dueDate,
+      taskDetails,
+    );
   }
 
   return (
@@ -41,7 +48,9 @@ export const Preview = ({
         The following line will get added to: <i>{to}</i>
       </p>
 
-      <code className="create-task__preview">{task}</code>
+      <pre>
+        <code className="create-task__preview">{task}</code>
+      </pre>
     </div>
   );
 };

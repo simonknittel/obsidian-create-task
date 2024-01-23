@@ -1,4 +1,4 @@
-import { StrictMode } from "react";
+import { StrictMode, useId } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import CreateTask from "src/main";
 import { CreateTaskCreateModal, InitialValues } from ".";
@@ -9,6 +9,7 @@ import { Preview } from "./Preview";
 type Inputs = {
   customNoteIndex: "default" | string;
   taskDescription: string;
+  taskDetails: string;
   dueDate: string;
 };
 
@@ -30,13 +31,20 @@ export const ReactApp = ({ plugin, createModal, initialValues }: Props) => {
     defaultValues: {
       customNoteIndex: "default",
       taskDescription: initialValues?.taskDescription || "",
+      taskDetails: initialValues?.taskDetails || "",
       dueDate: initialValues?.dueDate || "",
     },
   });
 
   const customNoteIndex = watch("customNoteIndex");
   const taskDescription = watch("taskDescription");
+  const taskDetails = watch("taskDetails");
   const dueDate = watch("dueDate");
+
+  const targetNoteId = useId();
+  const taskDescriptionId = useId();
+  const taskDetailsId = useId();
+  const dueDateId = useId();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     await plugin.createTask(
@@ -47,6 +55,7 @@ export const ReactApp = ({ plugin, createModal, initialValues }: Props) => {
           : parseInt(data.customNoteIndex),
       data.taskDescription,
       data.dueDate,
+      data.taskDetails,
     );
 
     createModal.close();
@@ -61,9 +70,11 @@ export const ReactApp = ({ plugin, createModal, initialValues }: Props) => {
           : parseInt(customNoteIndex),
       taskDescription,
       dueDate,
+      taskDetails,
     );
 
     setValue("taskDescription", "");
+    setValue("taskDetails", "");
     setValue("dueDate", "");
 
     setFocus("taskDescription");
@@ -78,81 +89,115 @@ export const ReactApp = ({ plugin, createModal, initialValues }: Props) => {
   return (
     <StrictMode>
       <ObsidianProvider plugin={plugin} createModal={createModal}>
-        <Heading />
+        <div className="create-task__create-modal">
+          <Heading />
 
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="setting-item">
-            <div className="setting-item-info">
-              <label className="setting-item-name">📁 Target note</label>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="create-task__create-modal-row">
+              <div className="create-task__create-modal-left">
+                <div className="create-task__create-modal-icon">📁</div>
 
-              <div className="setting-item-description">
-                Corresponds to the custom notes added in the settings
+                <div>
+                  <label htmlFor={targetNoteId}>Target note</label>
+
+                  <p className="create-task__info">
+                    Required. Corresponds to the custom notes added in the
+                    settings
+                  </p>
+                </div>
+              </div>
+
+              <div className="create-task__create-modal-right">
+                {initialValues?.notePath ? (
+                  <input
+                    type="text"
+                    disabled
+                    autoFocus
+                    defaultValue={initialValues?.notePath}
+                    id={targetNoteId}
+                  />
+                ) : (
+                  <select
+                    className="dropdown"
+                    autoFocus
+                    {...register("customNoteIndex", { required: true })}
+                    id={targetNoteId}
+                  >
+                    <option value="default">Default</option>
+                    {options}
+                  </select>
+                )}
               </div>
             </div>
 
-            <div className="setting-item-control">
-              {initialValues?.notePath ? (
+            <div className="create-task__create-modal-row">
+              <div className="create-task__create-modal-left">
+                <div className="create-task__create-modal-icon">🖊️</div>
+
+                <div>
+                  <label htmlFor={taskDescriptionId}>Task description</label>
+
+                  <p className="create-task__info">
+                    Required. Text of the task
+                  </p>
+                </div>
+              </div>
+
+              <div className="create-task__create-modal-right">
                 <input
                   type="text"
-                  disabled
-                  autoFocus
-                  defaultValue={initialValues?.notePath}
+                  {...register("taskDescription", { required: true })}
+                  placeholder="My task"
+                  id={taskDescriptionId}
                 />
-              ) : (
-                <select
-                  className="dropdown"
-                  autoFocus
-                  {...register("customNoteIndex", { required: true })}
-                >
-                  <option value="default">Default</option>
-                  {options}
-                </select>
-              )}
-            </div>
-          </div>
 
-          <div className="setting-item">
-            <div className="setting-item-info">
-              <label className="setting-item-name">🖊️ Task description</label>
-
-              <div className="setting-item-description">
-                Text of the task (required)
+                {errors.taskDescription && (
+                  <p className="create-task__error">This field is required.</p>
+                )}
               </div>
             </div>
 
-            <div className="setting-item-control">
-              <input
-                type="text"
-                {...register("taskDescription", { required: true })}
-                placeholder="My task"
-              />
+            <div className="create-task__create-modal-row">
+              <div className="create-task__create-modal-left">
+                <div className="create-task__create-modal-icon">🖊️</div>
 
-              {errors.taskDescription && (
-                <p className="create-task__error">This field is required.</p>
-              )}
-            </div>
-          </div>
+                <div>
+                  <label htmlFor={taskDetailsId}>Details</label>
 
-          <div className="setting-item">
-            <div className="setting-item-info">
-              <label className="setting-item-name">📅 Due date</label>
+                  <p className="create-task__info">
+                    Optional. More details for this task
+                  </p>
+                </div>
+              </div>
 
-              <div className="setting-item-description">(optional)</div>
-            </div>
-
-            <div className="setting-item-control">
-              <input type="text" {...register("dueDate")} />
-            </div>
-          </div>
-
-          <div className="setting-item">
-            <div className="setting-item-info">
-              <div className="setting-item-name"></div>
-
-              <div className="setting-item-description"></div>
+              <div className="create-task__create-modal-right">
+                <textarea
+                  rows={5}
+                  {...register("taskDetails")}
+                  id={taskDetailsId}
+                />
+              </div>
             </div>
 
-            <div className="setting-item-control">
+            <div className="create-task__create-modal-row">
+              <div className="create-task__create-modal-left">
+                <div className="create-task__create-modal-icon">📅</div>
+
+                <div>
+                  <label htmlFor={dueDateId}>Due date</label>
+
+                  <p className="create-task__info">
+                    Optional. You can use natural language like "next week"
+                  </p>
+                </div>
+              </div>
+
+              <div className="create-task__create-modal-right">
+                <input type="text" {...register("dueDate")} id={dueDateId} />
+              </div>
+            </div>
+
+            <div className="create-task__create-modal-actions">
               <button type="button" onClick={handleCreateAnotherOne}>
                 Create another one
               </button>
@@ -161,15 +206,16 @@ export const ReactApp = ({ plugin, createModal, initialValues }: Props) => {
                 Create
               </button>
             </div>
-          </div>
-        </form>
+          </form>
 
-        <Preview
-          customNoteIndex={customNoteIndex}
-          notePath={initialValues?.notePath}
-          taskDescription={taskDescription}
-          dueDate={dueDate}
-        />
+          <Preview
+            customNoteIndex={customNoteIndex}
+            notePath={initialValues?.notePath}
+            taskDescription={taskDescription}
+            taskDetails={taskDetails}
+            dueDate={dueDate}
+          />
+        </div>
       </ObsidianProvider>
     </StrictMode>
   );

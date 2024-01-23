@@ -58,6 +58,7 @@ You can use parameters to prefill parts of the modal:
 
 - This prefills the Target note input: `note-path=Unsorted%20TODOs.md`
 - This prefills the Task description input: `task-description=Do%20stuff`
+- This prefills the Task details input: `task-details=More%20info`
 - This prefills the Due date input: `due-date=tomorrow`
 - This will skip the modal and immediately create the task in the specified note: `create=true`
 

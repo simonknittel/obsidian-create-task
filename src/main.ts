@@ -50,12 +50,14 @@ export default class CreateTask extends Plugin {
           params["note-path"],
           params["task-description"],
           params["due-date"],
+          params["task-details"],
         );
       } else {
         new CreateTaskCreateModal(this.app, this, {
           notePath: params["note-path"],
           taskDescription: params["task-description"],
           dueDate: params["due-date"],
+          taskDetails: params["task-details"],
         }).open();
       }
     });
@@ -93,6 +95,7 @@ export default class CreateTask extends Plugin {
     customNoteIndexOrNotePath: "default" | string | number,
     taskDescription: string,
     dueDate: string,
+    taskDetails: string,
   ) {
     let path: string;
     let str: string;
@@ -100,17 +103,27 @@ export default class CreateTask extends Plugin {
     if (customNoteIndexOrNotePath === "default") {
       path = this.settings.defaultNote;
 
-      str = this.compileLine(undefined, taskDescription, dueDate) + "\n";
+      str =
+        this.compileLine(undefined, taskDescription, dueDate, taskDetails) +
+        "\n";
     } else if (typeof customNoteIndexOrNotePath === "string") {
       path = customNoteIndexOrNotePath;
 
-      str = this.compileLine(undefined, taskDescription, dueDate) + "\n";
+      str =
+        this.compileLine(undefined, taskDescription, dueDate, taskDetails) +
+        "\n";
     } else {
       const customNote = this.settings.customNotes[customNoteIndexOrNotePath];
 
       path = customNote.path;
 
-      str = this.compileLine(customNote.tag, taskDescription, dueDate) + "\n";
+      str =
+        this.compileLine(
+          customNote.tag,
+          taskDescription,
+          dueDate,
+          taskDetails,
+        ) + "\n";
     }
 
     const file = this.app.vault.getAbstractFileByPath(path);
@@ -129,6 +142,7 @@ export default class CreateTask extends Plugin {
     tag: string | undefined,
     taskDescription: string,
     dueDate: string,
+    taskDetails: string,
   ) {
     let str = `- [ ]`;
 
@@ -147,6 +161,10 @@ export default class CreateTask extends Plugin {
       if (parsedDate) {
         str += ` @due(${parsedDate.getFullYear()}-${(parsedDate.getMonth() + 1).toString().padStart(2, "0")}-${parsedDate.getDate().toString().padStart(2, "0")})`;
       }
+    }
+
+    if (taskDetails) {
+      str += `\n\t- ${taskDetails.replace(/\n/g, "\n\t- ")}`;
     }
 
     return str;

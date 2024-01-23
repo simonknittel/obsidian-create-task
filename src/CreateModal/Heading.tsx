@@ -1,6 +1,6 @@
 import clsx from "clsx";
-import { useObsidianContext } from "./ObsidianContext";
 import { Settings } from "lucide-react";
+import { useObsidianContext } from "./ObsidianContext";
 
 type Props = Readonly<{
   className?: string;
@@ -10,7 +10,7 @@ export const Heading = ({ className }: Props) => {
   const { plugin, createModal } = useObsidianContext();
 
   return (
-    <div className={clsx(className, "create-task__create-heading")}>
+    <div className={clsx(className, "create-task__create-modal-heading")}>
       <h1>Create Task</h1>
 
       <button
@@ -19,9 +19,8 @@ export const Heading = ({ className }: Props) => {
           createModal.close();
           plugin.openSettings();
         }}
-        title="Open plugin settings"
-        className="clickable-icon"
       >
+        Settings
         <Settings className="svg-icon" />
       </button>
     </div>

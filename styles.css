@@ -49,12 +49,60 @@ If your plugin does not need CSS, delete this file.
 
 .create-task__error {
   color: var(--text-error);
+  font-size: var(--font-ui-smaller);
+  line-height: var(--line-height-tight);
   margin-top: var(--size-4-2);
   margin-bottom: 0;
 }
 
 .create-task__custom-note {
   margin-top: var(--size-4-2);
+}
+
+.create-task__create-modal-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.create-task__create-modal-heading button {
+  gap: var(--size-4-2);
+}
+
+.create-task__create-modal-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--size-4-8);
+  border-top: 1px solid var(--background-modifier-border);
+  border-bottom: 1px solid var(--background-modifier-border);
+  padding-top: var(--size-4-4);
+  padding-bottom: var(--size-4-4);
+}
+
+.create-task__create-modal-row + .create-task__create-modal-row {
+  border-top: none;
+}
+
+.create-task__create-modal-left {
+  display: flex;
+  gap: var(--size-4-2);
+}
+
+.create-task__create-modal-right select,
+.create-task__create-modal-right input,
+.create-task__create-modal-right textarea {
+  width: 100%;
+}
+
+.create-task__create-modal-right textarea {
+  resize: vertical;
+}
+
+.create-task__create-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--size-4-2);
+  margin-top: var(--size-4-4);
 }
 
 .create-task__preview {
@@ -66,10 +114,4 @@ If your plugin does not need CSS, delete this file.
   font-size: var(--code-size);
   border-radius: var(--radius-s);
   margin-top: var(--size-4-2);
-}
-
-.create-task__create-heading {
-  display: flex;
-  align-items: center;
-  gap: var(--size-4-2);
 }

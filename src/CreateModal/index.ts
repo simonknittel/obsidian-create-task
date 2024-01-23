@@ -9,6 +9,7 @@ export type InitialValues =
       notePath: string | undefined;
       taskDescription: string | undefined;
       dueDate: string | undefined;
+      taskDetails: string | undefined;
     }
   | undefined;
 
