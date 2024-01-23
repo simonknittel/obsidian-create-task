@@ -1,0 +1,27 @@
+/*
+
+This CSS file will be included with your plugin, and
+available in the app when your plugin is enabled.
+
+If your plugin does not need CSS, delete this file.
+
+*/
+
+@import "./CreateModal/styles.css";
+@import "./settings/styles.css";
+
+.create-task__info {
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+  line-height: var(--line-height-tight);
+  margin-top: var(--size-4-2);
+  margin-bottom: 0;
+}
+
+.create-task__error {
+  color: var(--text-error);
+  font-size: var(--font-ui-smaller);
+  line-height: var(--line-height-tight);
+  margin-top: var(--size-4-2);
+  margin-bottom: 0;
+}
