@@ -95,6 +95,24 @@ Here are some examples of where you could use the url:
 
 <img src="https://github.com/simonknittel/obsidian-create-task/blob/main/docs/google-chome-bookmark.png?raw=true" height="240" />
 
+#### Android
+
+You can use _Automate_ to create a homescreen shortcut which opens the create modal.
+
+1. Install Automate
+2. Create a new _Flow_ in Automate
+3. Attach an _App start_ block to the _Flow beginning_ block
+4. Configure the App start block
+   - Package: `md.obsidian`
+   - Activity class: `md.obsidian.MainActivity`
+   - Action: `View`
+   - Date URI: `obsidian://create-task`
+5. Save the Flow
+6. Add a new widget to your homescreen
+7. Choose the _Flow shortcut_ widget from Automate
+8. Select the newly created flow for the widget
+9. Now you can open Obsidian and the create modal by clicking the new homescreen widget
+
 ## Contributing
 
 1. Create a separate Obsidian vault for plugin development
