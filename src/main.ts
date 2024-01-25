@@ -198,6 +198,8 @@ export default class CreateTask extends Plugin {
     this.settings.firstOnboarding = new Date();
     await this.saveSettings(true);
 
+    if (this.settings.defaultNote) return;
+
     this.openOnboardingModal();
   }
 }
