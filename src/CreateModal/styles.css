@@ -1,3 +1,5 @@
+@import "./Preview.css";
+
 .create-task__create-modal {
   container-type: inline-size;
 }
@@ -54,15 +56,4 @@
   justify-content: flex-end;
   gap: var(--size-4-2);
   margin-top: var(--size-4-4);
-}
-
-.create-task__preview {
-  display: block;
-  word-break: break-all;
-  padding: var(--size-4-4);
-  background-color: var(--code-background);
-  white-space: var(--code-whitespace);
-  font-size: var(--code-size);
-  border-radius: var(--radius-s);
-  margin-top: var(--size-4-2);
 }

@@ -1,0 +1,10 @@
+.create-task__preview {
+  display: block;
+  word-break: break-all;
+  padding: var(--size-4-4);
+  background-color: var(--code-background);
+  white-space: break-spaces;
+  font-size: var(--code-size);
+  border-radius: var(--radius-s);
+  margin-top: var(--size-4-2);
+}
