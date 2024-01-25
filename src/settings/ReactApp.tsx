@@ -4,6 +4,7 @@ import { AddCustomNote } from "./AddCustomNote";
 import { CustomNotes } from "./CustomNotes";
 import { DateFormat } from "./DateFormat";
 import { DefaultNote } from "./DefaultNote";
+import { Links } from "./Links";
 import { ObsidianProvider } from "./ObsidianContext";
 
 type Props = Readonly<{
@@ -18,6 +19,7 @@ export const ReactApp = ({ plugin }: Props) => {
         <DateFormat />
         <AddCustomNote />
         <CustomNotes />
+        <Links />
       </ObsidianProvider>
     </StrictMode>
   );
