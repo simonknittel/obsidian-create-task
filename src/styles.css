@@ -7,6 +7,7 @@ If your plugin does not need CSS, delete this file.
 
 */
 
+@import "./components/Links.css";
 @import "./CreateModal/styles.css";
 @import "./settings/styles.css";
 

@@ -8,4 +8,5 @@ export type CreateTaskSettings = {
   defaultNote: string;
   dateFormat: string;
   customNotes: CustomNote[];
+  firstOnboarding?: Date;
 };

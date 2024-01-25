@@ -1,5 +1,6 @@
 import { StrictMode, useId } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { Links } from "src/components/Links";
 import CreateTask from "src/main";
 import { CreateTaskOnboardingModal } from ".";
 import { Heading } from "./Heading";
@@ -89,6 +90,8 @@ export const ReactApp = ({ plugin, onboardingModal }: Props) => {
               </button>
             </div>
           </form>
+
+          <Links items={["documentation"]} />
         </div>
       </ObsidianProvider>
     </StrictMode>

@@ -61,6 +61,8 @@ export default class CreateTask extends Plugin {
         }).open();
       }
     });
+
+    this.firstOnboarding();
   }
 
   onunload() {}
@@ -69,8 +71,10 @@ export default class CreateTask extends Plugin {
     this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
   }
 
-  async saveSettings() {
+  async saveSettings(skipNotice = false) {
     await this.saveData(this.settings);
+
+    if (skipNotice) return;
     new Notice("Create Task: Settings saved");
   }
 
@@ -186,5 +190,14 @@ export default class CreateTask extends Plugin {
     if (!file || !(file instanceof TFile)) throw new Error("File not found");
 
     return file;
+  }
+
+  async firstOnboarding() {
+    if (this.settings.firstOnboarding) return;
+
+    this.settings.firstOnboarding = new Date();
+    await this.saveSettings(true);
+
+    this.openOnboardingModal();
   }
 }
