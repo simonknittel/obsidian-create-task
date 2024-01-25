@@ -1,0 +1,8 @@
+.create-task__default-note .setting-item-control {
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.is-phone .create-task__default-note .setting-item-control {
+  align-items: flex-start;
+}

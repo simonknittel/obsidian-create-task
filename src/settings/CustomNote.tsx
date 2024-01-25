@@ -26,7 +26,7 @@ export const CustomNote = ({
   first,
   last,
 }: Props) => {
-  const { updateCustomNote, moveCustomNote, removeCustomNote } =
+  const { plugin, updateCustomNote, moveCustomNote, removeCustomNote } =
     useObsidianContext();
   const notePathId = useId();
   const displayNameId = useId();
@@ -36,9 +36,21 @@ export const CustomNote = ({
     register,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    try {
+      await plugin.getFile(data.notePath);
+    } catch (error) {
+      setError("notePath", {
+        type: "manual",
+        message: "This file doesn't exist.",
+      });
+
+      return;
+    }
+
     await updateCustomNote(index, {
       path: data.notePath,
       name: data.displayName,
@@ -65,7 +77,9 @@ export const CustomNote = ({
           />
 
           {errors.notePath && (
-            <p className="create-task__error">This field is required.</p>
+            <p className="create-task__error">
+              {errors.notePath.message || "This field is required."}
+            </p>
           )}
         </div>
 
@@ -82,7 +96,9 @@ export const CustomNote = ({
           />
 
           {errors.displayName && (
-            <p className="create-task__error">This field is required.</p>
+            <p className="create-task__error">
+              {errors.displayName.message || "This field is required."}
+            </p>
           )}
         </div>
 

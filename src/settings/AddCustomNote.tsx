@@ -15,7 +15,7 @@ type Props = Readonly<{
 }>;
 
 export const AddCustomNote = ({ className }: Props) => {
-  const { addCustomNote } = useObsidianContext();
+  const { plugin, addCustomNote } = useObsidianContext();
   const notePathId = useId();
   const displayNameId = useId();
   const tagId = useId();
@@ -26,9 +26,21 @@ export const AddCustomNote = ({ className }: Props) => {
     formState: { errors },
     setValue,
     setFocus,
+    setError,
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    try {
+      await plugin.getFile(data.notePath);
+    } catch (error) {
+      setError("notePath", {
+        type: "manual",
+        message: "This file doesn't exist.",
+      });
+
+      return;
+    }
+
     await addCustomNote({
       path: data.notePath,
       name: data.displayName,
@@ -66,7 +78,9 @@ export const AddCustomNote = ({ className }: Props) => {
           />
 
           {errors.notePath && (
-            <p className="create-task__error">This field is required.</p>
+            <p className="create-task__error">
+              {errors.notePath.message || "This field is required."}
+            </p>
           )}
 
           <p className="create-task__info">The file path of this note.</p>
@@ -88,7 +102,9 @@ export const AddCustomNote = ({ className }: Props) => {
           />
 
           {errors.displayName && (
-            <p className="create-task__error">This field is required.</p>
+            <p className="create-task__error">
+              {errors.displayName.message || "This field is required."}
+            </p>
           )}
 
           <p className="create-task__info">

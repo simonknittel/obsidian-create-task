@@ -1,8 +1,12 @@
-import { App, Modal, Notice, Setting } from "obsidian";
+import { App, Modal } from "obsidian";
+import { createElement } from "react";
+import { createRoot, Root } from "react-dom/client";
 import CreateTask from "../main";
+import { ReactApp } from "./ReactApp";
 
 export class CreateTaskOnboardingModal extends Modal {
   plugin: CreateTask;
+  root: Root | null = null;
 
   constructor(app: App, plugin: CreateTask) {
     super(app);
@@ -12,41 +16,17 @@ export class CreateTaskOnboardingModal extends Modal {
   onOpen() {
     const { contentEl } = this;
 
-    contentEl.createEl("h1", { text: "Create Task: Onboarding" });
-
-    let defaultNote: string;
-
-    new Setting(contentEl)
-      .setName("Default note (required)")
-      .setDesc(
-        "Tasks will be added to this note if no other note is selected. This is required to use the plugin.",
-      )
-      .addText((text) => {
-        text.setValue(this.plugin.settings.defaultNote).onChange((value) => {
-          defaultNote = value;
-        });
-      });
-
-    new Setting(contentEl).addButton((button) => {
-      button
-        .setCta()
-        .setButtonText("Save")
-        .onClick(async () => {
-          if (!defaultNote) {
-            new Notice("Create Task: You must set the Default note setting");
-            return;
-          }
-
-          this.plugin.settings.defaultNote = defaultNote;
-          await this.plugin.saveSettings();
-          this.close();
-          new Notice("Create Task: Onboarding complete");
-        });
-    });
+    const reactRoot = contentEl.createDiv();
+    this.root = createRoot(reactRoot);
+    this.root.render(
+      createElement(ReactApp, {
+        plugin: this.plugin,
+        onboardingModal: this,
+      }),
+    );
   }
 
   onClose() {
-    const { contentEl } = this;
-    contentEl.empty();
+    this.root?.unmount();
   }
 }

@@ -12,7 +12,7 @@ export default class CreateTask extends Plugin {
     await this.loadSettings();
 
     this.addRibbonIcon("check-square", "Create Task", () => {
-      this.openModal();
+      this.openCreateModal();
     });
 
     this.addCommand({
@@ -20,7 +20,7 @@ export default class CreateTask extends Plugin {
       name: "Create",
       icon: "check-square",
       callback: () => {
-        this.openModal();
+        this.openCreateModal();
       },
     });
 
@@ -74,14 +74,18 @@ export default class CreateTask extends Plugin {
     new Notice("Create Task: Settings saved");
   }
 
-  openModal() {
+  openCreateModal() {
     if (!this.settings.defaultNote) {
       new Notice("Create Task: You must set the Default note setting");
-      new CreateTaskOnboardingModal(this.app, this).open();
+      this.openOnboardingModal();
       return;
     }
 
     new CreateTaskCreateModal(this.app, this, undefined).open();
+  }
+
+  openOnboardingModal() {
+    new CreateTaskOnboardingModal(this.app, this).open();
   }
 
   openSettings() {
@@ -126,9 +130,10 @@ export default class CreateTask extends Plugin {
         ) + "\n";
     }
 
-    const file = this.app.vault.getAbstractFileByPath(path);
-
-    if (!file || !(file instanceof TFile)) {
+    let file: TFile;
+    try {
+      file = await this.getFile(path);
+    } catch (error) {
       new Notice("Create Task: Note not found");
       return;
     }
@@ -173,5 +178,13 @@ export default class CreateTask extends Plugin {
     }
 
     return str;
+  }
+
+  async getFile(path: string) {
+    const file = this.app.vault.getAbstractFileByPath(path);
+
+    if (!file || !(file instanceof TFile)) throw new Error("File not found");
+
+    return file;
   }
 }
