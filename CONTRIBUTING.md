@@ -10,3 +10,19 @@
 5. Install this plugin's dependencies: `bun install`
 6. Build and watch for changes: `bun dev`
 7. Enable the Create Task plugin in Obsidian
+
+## Release ticket template
+
+```md
+- [ ] Check if startup time got worse
+- [ ] Check some non-default themes
+- [ ] Close milestone
+  - https://github.com/simonknittel/obsidian-create-task/milestones
+- [ ] Update screenshots in `README.md`
+- [ ] Bump version in `manifest.json`, `package.json` and `versions.json`
+  - https://docs.obsidian.md/Reference/Versions
+- [ ] Create and push release tag
+- [ ] Add changelog to the release notes
+  - https://github.com/simonknittel/obsidian-create-task/releases
+- [ ] Publish release
+```
