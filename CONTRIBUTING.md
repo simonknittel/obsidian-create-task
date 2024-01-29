@@ -11,9 +11,8 @@
 6. Build and watch for changes: `bun dev`
 7. Enable the Create Task plugin in Obsidian
 
-## Release ticket template
+## Release checklist
 
-```md
 - [ ] Check if startup time got worse
 - [ ] Check some non-default themes
 - [ ] Close milestone
@@ -25,4 +24,3 @@
 - [ ] Add changelog to the release notes
   - https://github.com/simonknittel/obsidian-create-task/releases
 - [ ] Publish release
-```

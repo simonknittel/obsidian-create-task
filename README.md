@@ -1,6 +1,6 @@
 <h1 align="center">Create Task</h1>
 
-<p align="center">Faster creation of tasks in Obsidian.</p>
+<p align="center">Create tasks faster from anywhere.</p>
 
 <p align="center">
   <a href="#features--why">Features & Why</a> • <a href="#install">Install</a> • <a href="#usage">Usage</a>
