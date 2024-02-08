@@ -28,6 +28,12 @@ The main feature of this plugin is a modal which guides you through the individu
 
 ## Install
 
+### Official plugin browser
+
+<https://obsidian.md/plugins?id=create-task>
+
+### Manual
+
 1. Download the [latest release](https://github.com/simonknittel/obsidian-create-task/releases/latest/download/obsidian-create-task.zip)
 2. Extract the `.zip` file
 3. Move the extracted directory into your vault's plugin directory (`.obsidian/plugins/`)
