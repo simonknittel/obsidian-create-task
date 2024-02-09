@@ -24,7 +24,7 @@ The main feature of this plugin is a modal which guides you through the individu
 
 - You can configure multiple _target notes_. Other plugins usually save all tasks in a single note. For my use case I want to store the tasks in different notes depending on the project I'm working on.
 - You can configure a tag which will get appended to the created tasks. This is helpful when using the CardBoard plugin since their columns are tag-based.
-- You can create tasks with a due date and use [natural language](https://github.com/wanasit/chrono) for defining the these. You can also configure the output format since other plugins use different formats for handling dates.
+- You can create tasks with a due date and use [natural language](https://github.com/wanasit/chrono) for defining these. You can also configure the output format since other plugins use different formats for handling dates.
 
 ## Install
 
