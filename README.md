@@ -112,7 +112,7 @@ You can use _Automate_ to create a homescreen shortcut which opens the create mo
    - Package: `md.obsidian`
    - Activity class: `md.obsidian.MainActivity`
    - Action: `View`
-   - Date URI: `obsidian://create-task`
+   - Data URI: `obsidian://create-task`
 5. Save the Flow
 6. Add a new widget to your homescreen
 7. Choose the _Flow shortcut_ widget from Automate
