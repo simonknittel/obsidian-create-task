@@ -7,7 +7,7 @@
    - This will reload plugins when changes to their `main.js` or `styles.css` are detected (see step 6)
 3. Clone this repository to your vault's `.obsidian/plugin/` directory
 4. Install [Bun](https://bun.sh/)
-5. Install this plugin's dependencies: `bun install`
+5. Install this plugin's dependencies: `bun install --frozen-lockfile`
 6. Build and watch for changes: `bun dev`
 7. Enable the Create Task plugin in Obsidian
 
