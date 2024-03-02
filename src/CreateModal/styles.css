@@ -57,3 +57,36 @@
   gap: var(--size-4-2);
   margin-top: var(--size-4-4);
 }
+
+.create-task__create-modal-suggestions {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + var(--size-4-1));
+}
+
+.create-task__create-modal-suggestions--visible {
+  display: flex;
+}
+
+.create-task__create-modal-suggestions-anchor {
+  position: relative;
+}
+
+.create-task__create-modal-suggestions {
+  list-style: none;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  border-radius: var(--radius-s);
+  flex-wrap: wrap;
+  gap: var(--size-4-2);
+  padding: var(--size-4-2);
+  background-color: var(--background-modifier-form-field);
+  box-shadow: var(--input-shadow);
+}
+
+.create-task__create-modal-suggestions button {
+  border-radius: 100px;
+}
