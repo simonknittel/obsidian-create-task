@@ -12,13 +12,13 @@
   "author": "Simon Knittel <hallo@simonknittel.de>",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "20.11.19",
-    "@types/react": "18.2.56",
+    "@types/node": "20.11.24",
+    "@types/react": "18.2.61",
     "@types/react-dom": "18.2.19",
-    "@typescript-eslint/eslint-plugin": "7.0.1",
-    "@typescript-eslint/parser": "7.0.1",
+    "@typescript-eslint/eslint-plugin": "7.1.0",
+    "@typescript-eslint/parser": "7.1.0",
     "builtin-modules": "3.3.0",
-    "esbuild": "0.20.0",
+    "esbuild": "0.20.1",
     "obsidian": "latest",
     "prettier": "3.2.5",
     "prettier-plugin-organize-imports": "3.2.4",
@@ -28,9 +28,9 @@
   "dependencies": {
     "chrono-node": "2.7.5",
     "clsx": "2.1.0",
-    "lucide-react": "0.331.0",
+    "lucide-react": "0.344.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-hook-form": "7.50.1"
+    "react-hook-form": "7.51.0"
   }
 }
