@@ -26,7 +26,6 @@
     "typescript": "5.3.3"
   },
   "dependencies": {
-    "@headlessui/react": "1.7.18",
     "chrono-node": "2.7.5",
     "clsx": "2.1.0",
     "lucide-react": "0.344.0",
