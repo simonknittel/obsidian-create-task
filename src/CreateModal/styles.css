@@ -72,6 +72,7 @@
 
 .create-task__create-modal-suggestions-anchor {
   position: relative;
+  flex: 1;
 }
 
 .create-task__create-modal-suggestions {
@@ -81,12 +82,45 @@
   padding-left: 0;
   border-radius: var(--radius-s);
   flex-wrap: wrap;
-  gap: var(--size-4-2);
+  gap: var(--size-4-1);
   padding: var(--size-4-2);
   background-color: var(--background-modifier-form-field);
   box-shadow: var(--input-shadow);
 }
 
 .create-task__create-modal-suggestions button {
-  border-radius: 100px;
+  font-size: var(--font-ui-smaller);
+  line-height: var(--line-height-tight);
+  padding-left: var(--size-4-2);
+  padding-right: var(--size-4-2);
+}
+
+.create-task__create-modal-input-row {
+  display: flex;
+}
+
+.create-task__create-modal-date-picker {
+  position: relative;
+}
+
+.create-task__create-modal-date-picker-button {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.create-task__create-modal-date-picker-input {
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  position: absolute !important;
+  left: 0;
+  top: 100%;
+}
+
+.create-task__create-modal-date-input {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
 }
