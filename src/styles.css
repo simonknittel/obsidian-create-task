@@ -44,9 +44,9 @@ If your plugin does not need CSS, delete this file.
   background-color: var(--background-primary-alt);
   padding: var(--size-4-4);
   text-decoration: none;
-  color: var(--text-normal);
+  color: var(--text-normal) !important;
   font-weight: var(--font-bold);
-  box-shadow: none;
+  box-shadow: none !important;
   font-size: var(--font-ui-medium);
   height: auto;
   cursor: var(--cursor-link);
@@ -54,5 +54,5 @@ If your plugin does not need CSS, delete this file.
 
 .create-task__links a:hover,
 .create-task__links button:hover {
-  background-color: var(--background-modifier-hover);
+  background-color: var(--background-modifier-hover) !important;
 }

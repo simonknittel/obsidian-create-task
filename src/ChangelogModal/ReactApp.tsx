@@ -30,18 +30,32 @@ export const ReactApp = ({ plugin, changelogModal, lastChangelog }: Props) => {
 
               <ul>
                 <li>
-                  The due date input now suggests you some values on focus.
-                  <img
-                    src="https://raw.githubusercontent.com/simonknittel/obsidian-create-task/main/src/ChangelogModal/assets/1-4-0_suggestions.png"
-                    alt=""
-                  />
+                  <p>
+                    The due date input now suggests you some values on focus.
+                  </p>
+                  <a
+                    className="create-task__changelog-modal-screenshot"
+                    href="https://raw.githubusercontent.com/simonknittel/obsidian-create-task/main/src/ChangelogModal/assets/1-4-0_suggestions.png"
+                    title="Open screenshot in original size"
+                  >
+                    <img
+                      src="https://raw.githubusercontent.com/simonknittel/obsidian-create-task/main/src/ChangelogModal/assets/1-4-0_suggestions.png"
+                      alt=""
+                    />
+                  </a>
                 </li>
                 <li>
-                  The due date input now provides you with a date picker.
-                  <img
-                    src="https://raw.githubusercontent.com/simonknittel/obsidian-create-task/main/src/ChangelogModal/assets/1-4-0_date-picker.png"
-                    alt=""
-                  />
+                  <p>The due date input now provides you with a date picker.</p>
+                  <a
+                    className="create-task__changelog-modal-screenshot"
+                    href="https://raw.githubusercontent.com/simonknittel/obsidian-create-task/main/src/ChangelogModal/assets/1-4-0_date-picker.png"
+                    title="Open screenshot in original size"
+                  >
+                    <img
+                      src="https://raw.githubusercontent.com/simonknittel/obsidian-create-task/main/src/ChangelogModal/assets/1-4-0_date-picker.png"
+                      alt=""
+                    />
+                  </a>
                 </li>
                 <li>
                   Starting with this release, this modal with the latest
