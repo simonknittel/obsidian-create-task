@@ -8,7 +8,7 @@
 3. Clone this repository to your vault's `.obsidian/plugin/` directory
 4. Install [Bun](https://bun.sh/)
 5. Install this plugin's dependencies: `bun install --frozen-lockfile`
-6. Build and watch for changes: `bun dev`
+6. Build and watch for changes: `bun run dev`
 7. Enable the Create Task plugin in Obsidian
 
 ## Release checklist
@@ -18,6 +18,7 @@
 - [ ] Close milestone
   - https://github.com/simonknittel/obsidian-create-task/milestones
 - [ ] Update screenshots in `README.md`
+- [ ] Update changelog in `src/ChangelogModal/index.tsx`
 - [ ] Bump version in `manifest.json`, `package.json` and `versions.json`
   - https://docs.obsidian.md/Reference/Versions
 - [ ] Create and push release tag

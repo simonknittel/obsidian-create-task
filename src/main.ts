@@ -1,5 +1,7 @@
 import { parseDate } from "chrono-node";
 import { Notice, Plugin, TFile } from "obsidian";
+import { gte } from "semver";
+import { CreateTaskChangelogModal } from "./ChangelogModal";
 import { CreateTaskCreateModal } from "./CreateModal";
 import { CreateTaskOnboardingModal } from "./OnboardingModal";
 import { CreateTaskSettingTab, DEFAULT_SETTINGS } from "./settings";
@@ -25,8 +27,17 @@ export default class CreateTask extends Plugin {
     });
 
     this.addCommand({
+      id: "open-changelog",
+      name: "Changelog",
+      icon: "package-plus",
+      callback: () => {
+        this.openChangelogModal();
+      },
+    });
+
+    this.addCommand({
       id: "open-settings",
-      name: "Open settings",
+      name: "Settings",
       icon: "settings",
       checkCallback: (checking) => {
         // Make sure this.app.setting is available since it's an undocumented/internal API
@@ -62,7 +73,24 @@ export default class CreateTask extends Plugin {
       }
     });
 
-    this.firstOnboarding();
+    await this.firstOnboarding();
+
+    await this.changelogModal();
+  }
+
+  async changelogModal() {
+    const lastChangelog = this.settings.lastChangelog || "1.3.5"; // Changelog detection was added in 1.4.0
+    if (gte(lastChangelog, this.manifest.version)) return;
+    this.settings.lastChangelog = this.manifest.version;
+    await this.saveSettings(true);
+
+    if (this.settings.disableChangelog) return;
+
+    this.openChangelogModal(lastChangelog);
+  }
+
+  openChangelogModal(lastChangelog?: string) {
+    new CreateTaskChangelogModal(this.app, this, lastChangelog).open();
   }
 
   onunload() {}

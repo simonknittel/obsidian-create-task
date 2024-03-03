@@ -1,10 +1,11 @@
+import { BookText, Coffee, PackagePlus } from "lucide-react";
 import { StrictMode } from "react";
 import CreateTask from "src/main";
-import { Links } from "../components/Links";
 import { AddCustomNote } from "./AddCustomNote";
 import { CustomNotes } from "./CustomNotes";
 import { DateFormat } from "./DateFormat";
 import { DefaultNote } from "./DefaultNote";
+import { DisableChangelog } from "./DisableChangelog";
 import { ObsidianProvider } from "./ObsidianContext";
 
 type Props = Readonly<{
@@ -17,9 +18,28 @@ export const ReactApp = ({ plugin }: Props) => {
       <ObsidianProvider plugin={plugin}>
         <DefaultNote />
         <DateFormat />
+        <DisableChangelog />
         <AddCustomNote />
         <CustomNotes />
-        <Links items={["documentation", "changelog", "coffee"]} />
+
+        <section className="create-task__links">
+          <a href="https://github.com/simonknittel/obsidian-create-task?tab=readme-ov-file#create-task">
+            <BookText /> Documentation
+          </a>
+
+          <button
+            type="button"
+            onClick={() => {
+              plugin.openChangelogModal();
+            }}
+          >
+            <PackagePlus /> Changelog
+          </button>
+
+          <a href="https://buymeacoffee.com/simonknittel">
+            <Coffee /> Buy Me A Coffee
+          </a>
+        </section>
       </ObsidianProvider>
     </StrictMode>
   );

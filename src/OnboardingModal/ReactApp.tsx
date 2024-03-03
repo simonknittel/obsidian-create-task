@@ -1,6 +1,6 @@
+import { BookText } from "lucide-react";
 import { StrictMode, useId } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Links } from "src/components/Links";
 import CreateTask from "src/main";
 import { CreateTaskOnboardingModal } from ".";
 import { Heading } from "./Heading";
@@ -91,7 +91,11 @@ export const ReactApp = ({ plugin, onboardingModal }: Props) => {
             </div>
           </form>
 
-          <Links items={["documentation"]} />
+          <section className="create-task__links">
+            <a href="https://github.com/simonknittel/obsidian-create-task?tab=readme-ov-file#create-task">
+              <BookText /> Documentation
+            </a>
+          </section>
         </div>
       </ObsidianProvider>
     </StrictMode>

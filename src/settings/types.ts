@@ -9,4 +9,6 @@ export type CreateTaskSettings = {
   dateFormat: string;
   customNotes: CustomNote[];
   firstOnboarding?: Date;
+  disableChangelog?: boolean;
+  lastChangelog?: string;
 };
