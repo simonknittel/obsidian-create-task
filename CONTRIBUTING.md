@@ -18,7 +18,7 @@
 - [ ] Close milestone
   - https://github.com/simonknittel/obsidian-create-task/milestones
 - [ ] Update screenshots in `README.md`
-- [ ] Update changelog in `src/ChangelogModal/index.tsx`
+- [ ] Update changelog in `src/ChangelogModal/ReactApp.tsx`
 - [ ] Bump version in `manifest.json`, `package.json` and `versions.json`
   - https://docs.obsidian.md/Reference/Versions
 - [ ] Create and push release tag
