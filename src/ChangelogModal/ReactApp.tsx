@@ -23,6 +23,22 @@ export const ReactApp = ({ plugin, changelogModal, lastChangelog }: Props) => {
             <article
               className={clsx("create-task__changelog-modal-release", {
                 "create-task__changelog-modal-release--new":
+                  lastChangelog && gt("1.4.2", lastChangelog),
+              })}
+            >
+              <h2>1.4.2</h2>
+
+              <ul>
+                <li>
+                  This release only upgrades dependencies. There are not changes
+                  for users of this plugin.
+                </li>
+              </ul>
+            </article>
+
+            <article
+              className={clsx("create-task__changelog-modal-release", {
+                "create-task__changelog-modal-release--new":
                   lastChangelog && gt("1.4.1", lastChangelog),
               })}
             >

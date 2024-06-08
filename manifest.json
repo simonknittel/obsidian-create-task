@@ -1,7 +1,7 @@
 {
   "id": "create-task",
   "name": "Create Task",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "minAppVersion": "1.4.16",
   "description": "Create tasks faster from anywhere.",
   "author": "Simon Knittel",
