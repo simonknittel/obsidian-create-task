@@ -12,27 +12,27 @@
   "author": "Simon Knittel <hallo@simonknittel.de>",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "20.12.5",
-    "@types/react": "18.2.74",
-    "@types/react-dom": "18.2.24",
+    "@types/node": "20.14.2",
+    "@types/react": "18.3.3",
+    "@types/react-dom": "18.3.0",
     "@types/semver": "7.5.8",
-    "@typescript-eslint/eslint-plugin": "7.5.0",
-    "@typescript-eslint/parser": "7.5.0",
-    "builtin-modules": "3.3.0",
-    "esbuild": "0.20.2",
+    "@typescript-eslint/eslint-plugin": "7.12.0",
+    "@typescript-eslint/parser": "7.12.0",
+    "builtin-modules": "4.0.0",
+    "esbuild": "0.21.4",
     "obsidian": "latest",
-    "prettier": "3.2.5",
+    "prettier": "3.3.1",
     "prettier-plugin-organize-imports": "3.2.4",
-    "tslib": "2.6.2",
-    "typescript": "5.4.4"
+    "tslib": "2.6.3",
+    "typescript": "5.4.5"
   },
   "dependencies": {
-    "chrono-node": "2.7.5",
-    "clsx": "2.1.0",
-    "lucide-react": "0.365.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-hook-form": "7.51.2",
-    "semver": "7.6.0"
+    "chrono-node": "2.7.6",
+    "clsx": "2.1.1",
+    "lucide-react": "0.390.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-hook-form": "7.51.5",
+    "semver": "7.6.2"
   }
 }
