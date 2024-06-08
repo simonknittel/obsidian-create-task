@@ -30,7 +30,7 @@ export const ReactApp = ({ plugin, changelogModal, lastChangelog }: Props) => {
 
               <ul>
                 <li>
-                  This release only upgrades dependencies. There are not changes
+                  This release only upgrades dependencies. There are no changes
                   for users of this plugin.
                 </li>
               </ul>
@@ -46,7 +46,7 @@ export const ReactApp = ({ plugin, changelogModal, lastChangelog }: Props) => {
 
               <ul>
                 <li>
-                  This release only upgrades dependencies. There are not changes
+                  This release only upgrades dependencies. There are no changes
                   for users of this plugin.
                 </li>
               </ul>
@@ -107,7 +107,7 @@ export const ReactApp = ({ plugin, changelogModal, lastChangelog }: Props) => {
 
               <ul>
                 <li>
-                  This release only upgrades dependencies. There are not changes
+                  This release only upgrades dependencies. There are no changes
                   for users of this plugin.
                 </li>
               </ul>
