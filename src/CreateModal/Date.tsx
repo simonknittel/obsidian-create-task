@@ -14,7 +14,7 @@ import { useFormContext } from "react-hook-form";
 import { Inputs } from "./ReactApp";
 
 type Props = Readonly<{
-  nextFocusRef: RefObject<HTMLElement>;
+  nextFocusRef: RefObject<HTMLElement | null>;
 }>;
 
 export const Date = ({ nextFocusRef }: Props) => {
@@ -54,8 +54,8 @@ export const Date = ({ nextFocusRef }: Props) => {
 
   const handleSuggestionKeyDown = (
     event: KeyboardEvent<HTMLButtonElement>,
-    prev: RefObject<HTMLInputElement | HTMLButtonElement> | null,
-    next: RefObject<HTMLInputElement | HTMLButtonElement> | null,
+    prev: RefObject<HTMLInputElement | HTMLButtonElement | null> | null,
+    next: RefObject<HTMLInputElement | HTMLButtonElement | null> | null,
   ) => {
     switch (event.key) {
       case "ArrowDown":
