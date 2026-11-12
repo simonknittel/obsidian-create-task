@@ -1,6 +1,6 @@
 <h1 align="center">Create Task</h1>
 
-<p align="center">Create tasks faster from anywhere.</p>
+<p align="center">Quickly create tasks from anywhere.</p>
 
 <p align="center">
   <a href="#features--why">Features & Why</a> • <a href="#install">Install</a> • <a href="#usage">Usage</a>
