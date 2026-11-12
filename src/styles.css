@@ -8,7 +8,6 @@ If your plugin does not need CSS, delete this file.
 */
 
 @import "./CreateModal/styles.css";
-@import "./settings/styles.css";
 @import "./ChangelogModal/styles.css";
 
 .create-task__info {
