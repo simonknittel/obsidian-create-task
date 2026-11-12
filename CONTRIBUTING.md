@@ -5,11 +5,13 @@
 1. Create a separate Obsidian vault for plugin development
 2. Install and enable the Hot Reload plugin: <https://github.com/pjeby/hot-reload>
    - This will reload plugins when changes to their `main.js` or `styles.css` are detected (see step 6)
-3. Clone this repository to your vault's `.obsidian/plugin/` directory
+3. Clone this repository to your vault's `.obsidian/plugins/` directory
 4. Install [Bun](https://bun.sh/)
 5. Install this plugin's dependencies: `bun install --frozen-lockfile`
 6. Build and watch for changes: `bun run dev`
 7. Enable the Create Task plugin in Obsidian
+
+Before you commit, run the linter: `bun run lint`
 
 ## Release checklist
 
