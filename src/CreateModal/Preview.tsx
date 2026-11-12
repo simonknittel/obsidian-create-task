@@ -31,6 +31,8 @@ export const Preview = ({
     task = plugin.compileLine(undefined, taskDescription, dueDate, taskDetails);
   } else {
     const customNote = plugin.settings.customNotes[parseInt(customNoteIndex)];
+    if (!customNote) return null;
+
     to = customNote.path;
     task = plugin.compileLine(
       customNote.tag,

@@ -1,8 +1,8 @@
 import clsx from "clsx";
 import { StrictMode } from "react";
 import { gt } from "semver";
-import CreateTask from "src/main";
 import { CreateTaskChangelogModal } from ".";
+import CreateTask from "../main";
 import { Heading } from "./Heading";
 import { ObsidianProvider } from "./ObsidianContext";
 

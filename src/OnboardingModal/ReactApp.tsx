@@ -1,8 +1,8 @@
 import { BookText } from "lucide-react";
 import { StrictMode, useId } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import CreateTask from "src/main";
 import { CreateTaskOnboardingModal } from ".";
+import CreateTask from "../main";
 import { Heading } from "./Heading";
 import { ObsidianProvider } from "./ObsidianContext";
 

@@ -1,6 +1,6 @@
 import { BookText, Coffee, PackagePlus } from "lucide-react";
 import { StrictMode } from "react";
-import CreateTask from "src/main";
+import CreateTask from "../main";
 import { AddCustomNote } from "./AddCustomNote";
 import { CustomNotes } from "./CustomNotes";
 import { DateFormat } from "./DateFormat";

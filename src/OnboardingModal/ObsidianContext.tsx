@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { createContext, useContext, useMemo } from "react";
-import CreateTask from "src/main";
 import { CreateTaskOnboardingModal } from ".";
+import CreateTask from "../main";
 
 type ObsidianContextInterface = {
   plugin: CreateTask;

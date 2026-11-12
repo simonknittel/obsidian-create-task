@@ -8,7 +8,7 @@ import { CreateTaskSettingTab, DEFAULT_SETTINGS } from "./settings";
 import { CreateTaskSettings } from "./settings/types";
 
 export default class CreateTask extends Plugin {
-  settings: CreateTaskSettings;
+  settings!: CreateTaskSettings;
 
   async onload() {
     await this.loadSettings();
@@ -42,10 +42,11 @@ export default class CreateTask extends Plugin {
       checkCallback: (checking) => {
         // Make sure this.app.setting is available since it's an undocumented/internal API
         // @ts-ignore
-        if (checking && this.app.setting?.open && this.app.setting?.openTabById)
-          return true;
+        if (!this.app.setting?.open || !this.app.setting?.openTabById)
+          return false;
 
-        this.openSettings();
+        if (!checking) this.openSettings();
+        return true;
       },
     });
 
@@ -59,9 +60,9 @@ export default class CreateTask extends Plugin {
       ) {
         this.createTask(
           params["note-path"],
-          params["task-description"],
-          params["due-date"],
-          params["task-details"],
+          params["task-description"] ?? "",
+          params["due-date"] ?? "",
+          params["task-details"] ?? "",
         );
       } else {
         new CreateTaskCreateModal(this.app, this, {
@@ -150,6 +151,10 @@ export default class CreateTask extends Plugin {
         "\n";
     } else {
       const customNote = this.settings.customNotes[customNoteIndexOrNotePath];
+      if (!customNote) {
+        new Notice("Create Task: Note not found");
+        return;
+      }
 
       path = customNote.path;
 

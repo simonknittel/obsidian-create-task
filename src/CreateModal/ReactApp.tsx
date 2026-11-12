@@ -1,7 +1,7 @@
 import { StrictMode, useId, useRef } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
-import CreateTask from "src/main";
 import { CreateTaskCreateModal, InitialValues } from ".";
+import CreateTask from "../main";
 import { Date } from "./Date";
 import { Heading } from "./Heading";
 import { ObsidianProvider } from "./ObsidianContext";

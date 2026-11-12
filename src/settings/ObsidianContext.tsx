@@ -6,7 +6,7 @@ import {
   useMemo,
   useState,
 } from "react";
-import CreateTask from "src/main";
+import CreateTask from "../main";
 import { CustomNote } from "./types";
 
 type ObsidianContextInterface = {
@@ -60,6 +60,7 @@ export const ObsidianProvider = ({ children, plugin }: ProviderProps) => {
     async (direction: "up" | "down", index: number) => {
       const newIndex = direction === "up" ? index - 1 : index + 1;
       const customNote = plugin.settings.customNotes[index];
+      if (!customNote) return;
 
       plugin.settings.customNotes.splice(index, 1);
       plugin.settings.customNotes.splice(newIndex, 0, customNote);
