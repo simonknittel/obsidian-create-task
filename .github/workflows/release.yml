@@ -8,7 +8,12 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
+
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
 
     steps:
       # Since you can choose branches when using workflow_dispatch, we need to ...
@@ -16,24 +21,33 @@ jobs:
         if: github.ref_type != 'tag'
         run: exit 1
 
-      - uses: actions/checkout@v4.1.6
+      - uses: actions/checkout@v7.0.1
 
-      - uses: oven-sh/setup-bun@v1.2.2
+      - uses: oven-sh/setup-bun@v2.2.0
         with:
-          bun-version: 1.1.12
+          bun-version-file: package.json
 
       - name: Install dependencies
-        run: bun install
+        run: bun install --frozen-lockfile
 
       - name: Build plugin
         run: bun run build
+
+      - name: Package plugin
+        run: zip -r obsidian-create-task.zip main.js manifest.json styles.css
+
+      - name: Attest build provenance
+        uses: actions/attest@v4.2.2
+        with:
+          subject-path: |
+            main.js
+            styles.css
+            obsidian-create-task.zip
 
       - name: Create release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          zip -r obsidian-create-task.zip main.js manifest.json styles.css
-
           gh release create ${{ github.ref_name }} \
             --title="${{ github.ref_name }}" \
             --draft \
