@@ -1,5 +1,5 @@
 import { parseDate } from "chrono-node";
-import { Notice, Plugin, TFile } from "obsidian";
+import { Notice, Plugin } from "obsidian";
 import { gte } from "semver";
 import { CreateTaskChangelogModal } from "./ChangelogModal";
 import { CreateTaskCreateModal } from "./CreateModal";
@@ -56,7 +56,7 @@ export default class CreateTask extends Plugin {
       if (
         params["create"] === "true" &&
         params["note-path"] &&
-        this.app.vault.getAbstractFileByPath(params["note-path"])
+        this.app.vault.getFileByPath(params["note-path"])
       ) {
         this.createTask(
           params["note-path"],
@@ -167,10 +167,8 @@ export default class CreateTask extends Plugin {
         ) + "\n";
     }
 
-    let file: TFile;
-    try {
-      file = await this.getFile(path);
-    } catch (error) {
+    const file = this.app.vault.getFileByPath(path);
+    if (!file) {
       new Notice("Create Task: Note not found");
       return;
     }
@@ -215,14 +213,6 @@ export default class CreateTask extends Plugin {
     }
 
     return str;
-  }
-
-  async getFile(path: string) {
-    const file = this.app.vault.getAbstractFileByPath(path);
-
-    if (!file || !(file instanceof TFile)) throw new Error("File not found");
-
-    return file;
   }
 
   async firstOnboarding() {

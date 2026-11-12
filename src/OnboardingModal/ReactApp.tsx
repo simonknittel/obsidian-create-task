@@ -30,9 +30,7 @@ export const ReactApp = ({ plugin, onboardingModal }: Props) => {
   const notePathId = useId();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    try {
-      await plugin.getFile(data.notePath);
-    } catch (error) {
+    if (!plugin.app.vault.getFileByPath(data.notePath)) {
       setError("notePath", {
         type: "manual",
         message: "This file doesn't exist.",
