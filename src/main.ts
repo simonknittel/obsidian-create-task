@@ -99,11 +99,12 @@ export default class CreateTask extends Plugin {
   onunload() {}
 
   async loadSettings() {
-    this.settings = Object.assign(
-      {},
-      DEFAULT_SETTINGS,
-      (await this.loadData()) as Partial<CreateTaskSettings>,
-    );
+    const data = (await this.loadData()) as Partial<CreateTaskSettings> | null;
+
+    this.settings = Object.assign({}, DEFAULT_SETTINGS, data);
+
+    // Without data.json, this is a fresh install and not an update
+    if (!data) this.settings.lastChangelog = this.manifest.version;
   }
 
   async saveSettings(skipNotice = false) {
