@@ -27,6 +27,8 @@ If your plugin does not need CSS, delete this file.
 }
 
 .create-task__links {
+  --link-color: var(--text-normal);
+  --link-color-hover: var(--text-normal);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -34,8 +36,7 @@ If your plugin does not need CSS, delete this file.
   margin-top: var(--size-4-8);
 }
 
-.create-task__links a,
-.create-task__links button {
+.create-task__links a {
   display: flex;
   align-items: center;
   gap: var(--size-4-2);
@@ -43,15 +44,12 @@ If your plugin does not need CSS, delete this file.
   background-color: var(--background-primary-alt);
   padding: var(--size-4-4);
   text-decoration: none;
-  color: var(--text-normal) !important;
   font-weight: var(--font-bold);
-  box-shadow: none !important;
   font-size: var(--font-ui-medium);
   height: auto;
   cursor: var(--cursor-link);
 }
 
-.create-task__links a:hover,
-.create-task__links button:hover {
-  background-color: var(--background-modifier-hover) !important;
+.create-task__links a:hover {
+  background-color: var(--background-modifier-hover);
 }

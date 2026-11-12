@@ -108,19 +108,23 @@
   border-bottom-left-radius: 0;
 }
 
-.create-task__create-modal-date-picker-input {
-  width: 0 !important;
-  height: 0 !important;
+/* The parent class makes the specificity higher than the input[type="..."] selectors of Obsidian */
+.create-task__create-modal-date-picker
+  .create-task__create-modal-date-picker-input {
+  /* Obsidian sets the left padding of date inputs to this variable, with a selector that has a higher specificity */
+  --size-4-6: 0;
+  width: 0;
+  height: 0;
   overflow: hidden;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  position: absolute !important;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  position: absolute;
   left: 0;
   top: 100%;
 }
 
-.create-task__create-modal-date-input {
-  border-top-right-radius: 0 !important;
-  border-bottom-right-radius: 0 !important;
+.create-task__create-modal-input-row .create-task__create-modal-date-input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
