@@ -23,6 +23,34 @@ export const ReactApp = ({ plugin, changelogModal, lastChangelog }: Props) => {
             <article
               className={clsx("create-task__changelog-modal-release", {
                 "create-task__changelog-modal-release--new":
+                  lastChangelog && gt("1.5.1", lastChangelog),
+              })}
+            >
+              <h2>1.5.1</h2>
+
+              <ul>
+                <li>
+                  The changelog no longer opens after a new installation (closes{" "}
+                  <a href="https://github.com/simonknittel/obsidian-create-task/issues/32">
+                    Issue #32
+                  </a>
+                  )
+                </li>
+                <li>
+                  The documentation link in the onboarding modal now shows when
+                  it has the keyboard focus.
+                </li>
+                <li>
+                  The styles of this plugin no longer use{" "}
+                  <code>!important</code>. Themes and CSS snippets can now
+                  change them more easily.
+                </li>
+              </ul>
+            </article>
+
+            <article
+              className={clsx("create-task__changelog-modal-release", {
+                "create-task__changelog-modal-release--new":
                   lastChangelog && gt("1.5.0", lastChangelog),
               })}
             >
