@@ -130,6 +130,10 @@ export class CreateTaskSettingTab extends PluginSettingTab {
 
     this.plugin.settings.customNotes.splice(newIndex, 0, customNote);
     await this.plugin.saveSettings(true);
+
+    // Obsidian 1.15.0 keeps the old row positions after a drag, which gives
+    // wrong indices to the edit and delete callbacks until the next update().
+    this.update();
   }
 
   private async removeCustomNote(index: number) {
