@@ -33,16 +33,12 @@ jobs:
       - name: Build plugin
         run: bun run build
 
-      - name: Package plugin
-        run: zip -r obsidian-create-task.zip main.js manifest.json styles.css
-
       - name: Attest build provenance
         uses: actions/attest@v4.2.2
         with:
           subject-path: |
             main.js
             styles.css
-            obsidian-create-task.zip
 
       - name: Create release
         env:
@@ -51,4 +47,4 @@ jobs:
           gh release create ${{ github.ref_name }} \
             --title="${{ github.ref_name }}" \
             --draft \
-            obsidian-create-task.zip main.js manifest.json styles.css
+            main.js manifest.json styles.css
