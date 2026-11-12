@@ -4,7 +4,7 @@ import { useObsidianContext } from "./ObsidianContext";
 type Props = Readonly<{
   className?: string;
   notePath?: string;
-  customNoteIndex: "default" | string;
+  customNoteIndex: string;
   taskDescription: string;
   taskDetails: string;
   dueDate: string;

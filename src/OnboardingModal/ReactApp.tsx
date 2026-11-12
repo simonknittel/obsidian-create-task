@@ -52,7 +52,7 @@ export const ReactApp = ({ plugin, onboardingModal }: Props) => {
         <div className="create-task__create-modal">
           <Heading />
 
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={(event) => void handleSubmit(onSubmit)(event)}>
             <div className="create-task__create-modal-row">
               <div className="create-task__create-modal-left">
                 <div className="create-task__create-modal-icon">🖊️</div>

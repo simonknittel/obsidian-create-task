@@ -9,7 +9,6 @@ export default defineConfig(
     "version-bump.mjs",
     "versions.json",
     "main.js",
-    "package.json",
     "tsconfig.json",
   ]),
   {
@@ -19,12 +18,16 @@ export default defineConfig(
       },
       parserOptions: {
         projectService: {
-          allowDefaultProject: ["eslint.config.mjs", "manifest.json"],
+          allowDefaultProject: ["eslint.config.mjs"],
         },
         tsconfigRootDir: import.meta.dirname,
-        extraFileExtensions: [".json"],
       },
     },
   },
   ...obsidianmd.configs.recommended,
+  {
+    rules: {
+      "obsidianmd/ui/sentence-case": ["warn", { brands: ["Create Task"] }],
+    },
+  },
 );

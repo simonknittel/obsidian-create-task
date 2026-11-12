@@ -252,7 +252,7 @@ export const ReactApp = ({ plugin, changelogModal, lastChangelog }: Props) => {
               type="button"
               onClick={() => {
                 plugin.settings.disableChangelog = true;
-                plugin.saveSettings();
+                void plugin.saveSettings();
                 changelogModal.close();
               }}
             >

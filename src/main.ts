@@ -40,9 +40,7 @@ export default class CreateTask extends Plugin {
       name: "Settings",
       icon: "settings",
       checkCallback: (checking) => {
-        // Make sure this.app.setting is available since it's an undocumented/internal API
-        // @ts-ignore
-        if (!this.app.setting?.open || !this.app.setting?.openTabById)
+        if (!this.app.setting?.open || !this.app.setting.openTabById)
           return false;
 
         if (!checking) this.openSettings();
@@ -58,7 +56,7 @@ export default class CreateTask extends Plugin {
         params["note-path"] &&
         this.app.vault.getFileByPath(params["note-path"])
       ) {
-        this.createTask(
+        void this.createTask(
           params["note-path"],
           params["task-description"] ?? "",
           params["due-date"] ?? "",
@@ -101,7 +99,11 @@ export default class CreateTask extends Plugin {
   onunload() {}
 
   async loadSettings() {
-    this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
+    this.settings = Object.assign(
+      {},
+      DEFAULT_SETTINGS,
+      (await this.loadData()) as Partial<CreateTaskSettings>,
+    );
   }
 
   async saveSettings(skipNotice = false) {
@@ -113,7 +115,7 @@ export default class CreateTask extends Plugin {
 
   openCreateModal() {
     if (!this.settings.defaultNote) {
-      new Notice("Create Task: You must set the Default note setting");
+      new Notice("Create Task: You must set the default note setting");
       this.openOnboardingModal();
       return;
     }
@@ -126,14 +128,12 @@ export default class CreateTask extends Plugin {
   }
 
   openSettings() {
-    // @ts-ignore
-    this.app.setting.open?.();
-    // @ts-ignore
-    this.app.setting.openTabById?.(this.manifest.id);
+    this.app.setting?.open?.();
+    this.app.setting?.openTabById?.(this.manifest.id);
   }
 
   async createTask(
-    customNoteIndexOrNotePath: "default" | string | number,
+    customNoteIndexOrNotePath: string | number,
     taskDescription: string,
     dueDate: string,
     taskDetails: string,

@@ -8,7 +8,7 @@ import { ObsidianProvider } from "./ObsidianContext";
 import { Preview } from "./Preview";
 
 export type Inputs = {
-  customNoteIndex: "default" | string;
+  customNoteIndex: string;
   taskDescription: string;
   taskDetails: string;
   dueDate: string;
@@ -88,7 +88,9 @@ export const ReactApp = ({ plugin, createModal, initialValues }: Props) => {
           <Heading />
 
           <FormProvider {...methods}>
-            <form onSubmit={methods.handleSubmit(onSubmit)}>
+            <form
+              onSubmit={(event) => void methods.handleSubmit(onSubmit)(event)}
+            >
               <div className="create-task__create-modal-row">
                 <div className="create-task__create-modal-left">
                   <div className="create-task__create-modal-icon">📁</div>
@@ -184,7 +186,7 @@ export const ReactApp = ({ plugin, createModal, initialValues }: Props) => {
               <div className="create-task__create-modal-actions">
                 <button
                   type="button"
-                  onClick={handleCreateAnotherOne}
+                  onClick={() => void handleCreateAnotherOne()}
                   ref={createAnotherOneRef}
                 >
                   Create another one

@@ -48,7 +48,7 @@ export const Date = ({ nextFocusRef }: Props) => {
     )
       return;
 
-    register("dueDate").onBlur(event);
+    void register("dueDate").onBlur(event);
     setSuggestionsVisible(false);
   };
 
@@ -113,7 +113,7 @@ export const Date = ({ nextFocusRef }: Props) => {
           <div className="create-task__create-modal-suggestions-anchor">
             <input
               type="text"
-              onChange={register("dueDate").onChange}
+              onChange={(event) => void register("dueDate").onChange(event)}
               onBlur={handleInputBlur}
               ref={(ref) => {
                 inputRef.current = ref;
