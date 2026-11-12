@@ -3,6 +3,7 @@ import { StrictMode, useId } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { CreateTaskOnboardingModal } from ".";
 import CreateTask from "../main";
+import { useNoteSuggest } from "../useNoteSuggest";
 import { Heading } from "./Heading";
 import { ObsidianProvider } from "./ObsidianContext";
 
@@ -21,6 +22,7 @@ export const ReactApp = ({ plugin, onboardingModal }: Props) => {
     handleSubmit,
     formState: { errors },
     setError,
+    setValue,
   } = useForm<Inputs>({
     defaultValues: {
       notePath: "",
@@ -28,6 +30,13 @@ export const ReactApp = ({ plugin, onboardingModal }: Props) => {
   });
 
   const notePathId = useId();
+
+  const { ref: notePathRef, ...notePathField } = register("notePath", {
+    required: true,
+  });
+  const noteSuggestRef = useNoteSuggest(plugin.app, (path) =>
+    setValue("notePath", path, { shouldValidate: true }),
+  );
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     if (!plugin.app.vault.getFileByPath(data.notePath)) {
@@ -70,7 +79,11 @@ export const ReactApp = ({ plugin, onboardingModal }: Props) => {
               <div className="create-task__create-modal-right">
                 <input
                   type="text"
-                  {...register("notePath", { required: true })}
+                  {...notePathField}
+                  ref={(input) => {
+                    notePathRef(input);
+                    noteSuggestRef(input);
+                  }}
                   id={notePathId}
                 />
 

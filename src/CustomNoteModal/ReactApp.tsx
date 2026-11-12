@@ -2,6 +2,7 @@ import { App } from "obsidian";
 import { StrictMode, useId } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { CustomNote } from "../settings/types";
+import { useNoteSuggest } from "../useNoteSuggest";
 
 type Inputs = {
   notePath: string;
@@ -21,6 +22,7 @@ export const ReactApp = ({ app, customNote, onSave }: Props) => {
     handleSubmit,
     formState: { errors },
     setError,
+    setValue,
   } = useForm<Inputs>({
     defaultValues: {
       notePath: customNote?.path ?? "",
@@ -32,6 +34,13 @@ export const ReactApp = ({ app, customNote, onSave }: Props) => {
   const notePathId = useId();
   const displayNameId = useId();
   const tagId = useId();
+
+  const { ref: notePathRef, ...notePathField } = register("notePath", {
+    required: true,
+  });
+  const noteSuggestRef = useNoteSuggest(app, (path) =>
+    setValue("notePath", path, { shouldValidate: true }),
+  );
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     if (!app.vault.getFileByPath(data.notePath)) {
@@ -73,7 +82,11 @@ export const ReactApp = ({ app, customNote, onSave }: Props) => {
             <input
               type="text"
               autoFocus
-              {...register("notePath", { required: true })}
+              {...notePathField}
+              ref={(input) => {
+                notePathRef(input);
+                noteSuggestRef(input);
+              }}
               id={notePathId}
             />
 
