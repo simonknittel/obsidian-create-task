@@ -23,6 +23,36 @@ export const ReactApp = ({ plugin, changelogModal, lastChangelog }: Props) => {
             <article
               className={clsx("create-task__changelog-modal-release", {
                 "create-task__changelog-modal-release--new":
+                  lastChangelog && gt("1.5.0", lastChangelog),
+              })}
+            >
+              <h2>1.5.0</h2>
+
+              <ul>
+                <li>
+                  The settings now use the native design of Obsidian. You can
+                  also find them in the settings search of Obsidian.
+                </li>
+                <li>You can now select the default note with a file picker.</li>
+                <li>
+                  You add and edit custom notes in a modal now. You can sort
+                  them with drag and drop.
+                </li>
+                <li>
+                  The note path inputs now suggest the notes of your vault
+                  (closes{" "}
+                  <a href="https://github.com/simonknittel/obsidian-create-task/issues/2">
+                    Issue #2
+                  </a>
+                  )
+                </li>
+                <li>This release requires Obsidian 1.13 or newer.</li>
+              </ul>
+            </article>
+
+            <article
+              className={clsx("create-task__changelog-modal-release", {
+                "create-task__changelog-modal-release--new":
                   lastChangelog && gt("1.4.2", lastChangelog),
               })}
             >
