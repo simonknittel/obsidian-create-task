@@ -53,3 +53,11 @@ If your plugin does not need CSS, delete this file.
 .create-task__links a:hover {
   background-color: var(--background-modifier-hover);
 }
+
+.create-task__links a:focus-visible {
+  box-shadow: 0 0 0 3px var(--background-modifier-border-focus);
+}
+
+.create-task__links a:active {
+  background-color: var(--background-modifier-active-hover);
+}
