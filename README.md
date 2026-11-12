@@ -60,6 +60,9 @@ This plugin supports the [URL scheme/Obsidian URI standard](https://help.obsidia
 
 Using this url (`obsidian://create-task`) will automatically start Obsidian and open the modal.
 
+> [!NOTE]
+> If you use [Lazy Loader](https://github.com/alangrainger/obsidian-lazy-plugins), set Create Task to _Instant_. With a delay, the url does not open the modal when Obsidian is closed. Obsidian handles the url before Lazy Loader loads Create Task.
+
 You can use parameters to prefill parts of the modal:
 
 - This prefills the Target note input: `note-path=Unsorted%20TODOs.md`
