@@ -74,9 +74,13 @@ export default class CreateTask extends Plugin {
       }
     });
 
-    await this.firstOnboarding();
+    this.app.workspace.onLayoutReady(() => void this.changelogModal());
+  }
 
-    await this.changelogModal();
+  onUserEnable() {
+    if (this.settings.defaultNote) return;
+
+    this.openOnboardingModal();
   }
 
   async changelogModal() {
@@ -213,16 +217,5 @@ export default class CreateTask extends Plugin {
     }
 
     return str;
-  }
-
-  async firstOnboarding() {
-    if (this.settings.firstOnboarding) return;
-
-    this.settings.firstOnboarding = new Date();
-    await this.saveSettings(true);
-
-    if (this.settings.defaultNote) return;
-
-    this.openOnboardingModal();
   }
 }
